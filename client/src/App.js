@@ -1,9 +1,9 @@
-import './App.css';
+import LandingPage from "./components/LandingPage.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Dogs</h1>
+    <div className="app">
+      <LandingPage />
     </div>
   );
 }

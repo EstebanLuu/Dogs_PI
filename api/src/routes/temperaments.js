@@ -1,11 +1,9 @@
 const { Router } = require("express");
 const axios = require("axios");
-const { Dog, Temperament } = require("../db.js");
+const { Temperament } = require("../db.js");
 const { API, API_KEY } = process.env;
-const { Op } = require("sequelize");
 
 const router = Router();
-
 router.get("/", async (req, res, next) => {
   try {
     const temperamentos = (await axios.get(`${API}?api_key=${API_KEY}`)).data;
@@ -38,3 +36,5 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+module.exports = router;

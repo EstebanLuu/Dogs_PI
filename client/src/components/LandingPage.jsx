@@ -1,0 +1,136 @@
+import React from "react";
+import styled from "styled-components";
+import perroLanding from "../assets/pexels-muhannad-alatawi-58997.jpg";
+
+const LandingPage = () => {
+  return (
+    <LandingContainer>
+      <h1 className="title-landing">Page Dogs</h1>
+      <div className="landing-img-containter">
+        <img className="landing-img" src={perroLanding} alt="" />
+      </div>
+
+      <div className="landing__text">
+        <h2 className="landing__text__title">
+          Lorem ipsum dolor sit, amet consectetur adipisicing.
+        </h2>
+        <p className="landing__text__p">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, ipsa
+          nihil temporibus qui soluta est. Tenetur aliquid optio doloremque
+          adipisci, mollitia iusto quis possimus fugit sed neque repellendus
+          necessitatibus! Aspernatur?
+        </p>
+      </div>
+      <button className="landing__button">Acceder</button>
+      <div className="landing__carrousel">
+        <div className="landing__carrousel__card">Conoce tu perro favorito</div>
+        <div className="landing__carrousel__card">Filtra razas</div>
+        <div className="landing__carrousel__card">Agrega un nuevo perro</div>
+        <div className="landing__carrousel__card">Todas las razas</div>
+        <div className="landing__carrousel__card">Levalos a todas partes</div>
+        <div className="landing__carrousel__card">Dogs responsive</div>
+      </div>
+    </LandingContainer>
+  );
+};
+
+export default LandingPage;
+
+const LandingContainer = styled.div`
+  margin: 20px var(--marginLR);
+
+  .title-landing {
+    color: var(--main-color);
+    font-family: Poppins;
+    font-size: 25px;
+    margin-bottom: 80px;
+    text-align: start;
+  }
+  .landing-img {
+    position: absolute;
+    right: 150px;
+    top: 0;
+    height: 400px;
+    border-radius: 0 0 200px 200px;
+  }
+
+  .landing__text {
+    width: 40%;
+    margin-bottom: var(--marginB-big);
+  }
+
+  .landing__text__title {
+    font-size: var(--title);
+    margin-bottom: var(--marginB-standard);
+  }
+
+  .landing__text__p {
+    font-size: var(--p);
+  }
+
+  .landing__button {
+    margin-bottom: var(--marginB-Mbig);
+  }
+  .landing__carrousel {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  .landing__carrousel__card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 150px;
+    width: 150px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover {
+      box-shadow: rgba(34, 34, 34, 0.185) 5px 16px 40px;
+    }
+  }
+
+  @media (max-width: 1206px) {
+    .landing-img {
+      right: var(--marginLR);
+    }
+  }
+
+  @media (max-width: 768px) {
+    text-align: center;
+    .title-landing {
+      text-align: center;
+      margin-bottom: var(--marginB-standard);
+    }
+
+    .landing-img-containter {
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .landing-img {
+      position: initial;
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+    }
+    .landing__text {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .landing-img {
+      position: initial;
+      width: 200px;
+      height: auto;
+      border-radius: 20px;
+    }
+  }
+`;
