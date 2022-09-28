@@ -21,7 +21,7 @@ const LandingPage = () => {
           necessitatibus! Aspernatur?
         </p>
       </div>
-      <button className="landing__button">Acceder</button>
+      <button className="button__model1">Acceder</button>
       <div className="landing__carrousel">
         <div className="landing__carrousel__card">Conoce tu perro favorito</div>
         <div className="landing__carrousel__card">Filtra razas</div>
@@ -61,7 +61,7 @@ const LandingContainer = styled.div`
     font-size: var(--p);
   }
 
-  .landing__button {
+  .button__model1 {
     margin-bottom: var(--marginB-Mbig);
   }
   .landing__carrousel {

@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 
-button {
+.button__model1 {
   padding: 15px 70px;
   background: var(--main-color);
   border: none;
@@ -15,8 +15,13 @@ button {
   cursor: pointer;
   transition: 0.3s;
 }
-button:hover {
+.button__model1 {
   background: rgb(202, 128, 30);
+}
+
+.search-bar {
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .title {
