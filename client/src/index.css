@@ -13,16 +13,22 @@ button {
   color: var(--light-color);
   border-radius: 7px;
   cursor: pointer;
-  background: rgb(131, 39, 252);
   transition: 0.3s;
 }
 button:hover {
-  background: rgb(95, 17, 196);
+  background: rgb(202, 128, 30);
+}
+
+.title {
+  color: var(--main-color);
+  font-size: 25px;
+  margin-bottom: 80px;
+  text-align: start;
 }
 
 :root {
   /* Colors */
-  --main-color: rgb(131, 39, 252);
+  --main-color: rgb(252, 160, 39);
   --light-color: #fff;
 
   /* font-size */
@@ -44,7 +50,7 @@ button:hover {
 
     /* font-size */
 
-    --title: 20px;
+    --title: 25px;
 
     /* Margin */
 
@@ -53,6 +59,15 @@ button:hover {
 }
 
 @media screen and (max-width: 768px) {
+  .title {
+    text-align: center;
+    margin-bottom: var(--marginB-standard);
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: var(--marginB-standard);
+  }
   :root {
     /* Colors */
 
@@ -81,9 +96,9 @@ button:hover {
     /* Colors */
 
     /* font-size */
-
+    --title: 15px;
     /* Margin */
 
-    --marginLR: 0px;
+    --marginLR: 10px;
   }
 }

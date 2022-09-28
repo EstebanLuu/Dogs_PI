@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import perroLanding from "../assets/pexels-muhannad-alatawi-58997.jpg";
+import perrosalchicha from "../assets/perroSalchicha.jpg";
 
 const LandingPage = () => {
   return (
     <LandingContainer>
-      <h1 className="title-landing">Page Dogs</h1>
+      <h1 className="title">Page Dogs</h1>
       <div className="landing-img-containter">
-        <img className="landing-img" src={perroLanding} alt="" />
+        <img className="landing-img" src={perrosalchicha} alt="" />
       </div>
 
       <div className="landing__text">
@@ -39,13 +39,6 @@ export default LandingPage;
 const LandingContainer = styled.div`
   margin: 20px var(--marginLR);
 
-  .title-landing {
-    color: var(--main-color);
-    font-family: Poppins;
-    font-size: 25px;
-    margin-bottom: 80px;
-    text-align: start;
-  }
   .landing-img {
     position: absolute;
     right: 150px;
@@ -73,12 +66,10 @@ const LandingContainer = styled.div`
   }
   .landing__carrousel {
     width: 100%;
-    min-height: 200px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    gap: 10px;
   }
   .landing__carrousel__card {
     display: flex;
@@ -87,11 +78,13 @@ const LandingContainer = styled.div`
     text-align: center;
     height: 150px;
     width: 150px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin: 0 7px;
+    color: var(--main-color);
+    box-shadow: rgba(75, 58, 255, 0.2) 0px 8px 24px;
     border-radius: 10px;
     cursor: pointer;
     &:hover {
-      box-shadow: rgba(34, 34, 34, 0.185) 5px 16px 40px;
+      box-shadow: rgba(75, 58, 255, 0.2) 5px 16px 40px;
     }
   }
 
@@ -103,10 +96,6 @@ const LandingContainer = styled.div`
 
   @media (max-width: 768px) {
     text-align: center;
-    .title-landing {
-      text-align: center;
-      margin-bottom: var(--marginB-standard);
-    }
 
     .landing-img-containter {
       width: 100%;
@@ -116,7 +105,7 @@ const LandingContainer = styled.div`
 
     .landing-img {
       position: initial;
-      width: 300px;
+      width: 70%;
       height: auto;
       border-radius: 20px;
     }
@@ -124,11 +113,10 @@ const LandingContainer = styled.div`
       width: 100%;
     }
   }
-
-  @media screen and (max-width: 350px) {
+  @media screen and (max-width: 576px) {
     .landing-img {
       position: initial;
-      width: 200px;
+      width: 90%;
       height: auto;
       border-radius: 20px;
     }

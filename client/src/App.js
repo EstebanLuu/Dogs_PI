@@ -1,9 +1,10 @@
-import LandingPage from "./components/LandingPage.jsx";
+import React from "react";
+import Routers from "./routes/routes.js";
 
 function App() {
   return (
     <div className="app">
-      <LandingPage />
+      <Routers />
     </div>
   );
 }

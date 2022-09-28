@@ -3,7 +3,6 @@ const axios = require("axios");
 const { Dog, Temperament } = require("../db.js");
 const { API, API_KEY } = process.env;
 const { formateoDb, formateoApi } = require("../controllers/controllers");
-const { Op } = require("sequelize");
 
 // Importar todos los routers;
 const router = Router();
@@ -46,25 +45,25 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/:idRaza", async (req, res, next) => {
-    const { idRaza } = req.params;
-    if (!idRaza) {
-      return res.status(400).send({ msg: "Falta enviar datos obligatorios" });
-    }
-    try {
-      const dogApi = (await axios.get(`${API}?api_key=${API_KEY}`)).data;
-      const dogDb = await Dog.findAll({ include: Temperament });
-  
-      const validandoDogsDb = await formateoDb(dogDb);
-      const validandoDogsApi = await formateoApi(dogApi);
-  
-      const allDog = await validandoDogsDb.concat(validandoDogsApi);
-  
-      const dog = allDog.filter((d) => d.id == idRaza);
-  
-      return res.status(200).send(dog);
-    } catch (error) {
-      next(error);
-    }
-  });
+  const { idRaza } = req.params;
+  if (!idRaza) {
+    return res.status(400).send({ msg: "Falta enviar datos obligatorios" });
+  }
+  try {
+    const dogApi = (await axios.get(`${API}?api_key=${API_KEY}`)).data;
+    const dogDb = await Dog.findAll({ include: Temperament });
+
+    const validandoDogsDb = await formateoDb(dogDb);
+    const validandoDogsApi = await formateoApi(dogApi);
+
+    const allDog = await validandoDogsDb.concat(validandoDogsApi);
+
+    const dog = allDog.filter((d) => d.id == idRaza);
+
+    return res.status(200).send(dog);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;

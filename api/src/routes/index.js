@@ -1,16 +1,14 @@
 const { Router } = require("express");
-const axios = require("axios");
-const { Dog, Temperament } = require("../db.js");
-const { API, API_KEY } = process.env;
-const { formateoDb, formateoApi } = require("../controllers/controllers");
 const search = require("./search");
 const dogs = require("./dogs");
 const temperaments = require("./temperaments");
+const landing = require("./landing");
 
 // Importar todos los routers;
 const router = Router();
 
 // // Configurar los routers
+router.use("/", landing);
 router.use("/search", search);
 router.use("/dogs", dogs);
 router.use("/temperaments", temperaments);
