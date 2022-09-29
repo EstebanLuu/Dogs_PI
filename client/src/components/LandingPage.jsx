@@ -1,15 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import perrosalchicha from "../assets/perroSalchicha.jpg";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
     <LandingContainer>
-      <h1 className="title">Page Dogs</h1>
+      <Link className="link" to="/home">
+        <h1 className="title">Page Dogs</h1>
+      </Link>
       <div className="landing-img-containter">
         <img className="landing-img" src={perrosalchicha} alt="" />
       </div>
-
       <div className="landing__text">
         <h2 className="landing__text__title">
           Lorem ipsum dolor sit, amet consectetur adipisicing.
@@ -21,14 +23,31 @@ const LandingPage = () => {
           necessitatibus! Aspernatur?
         </p>
       </div>
-      <button className="button__model1">Acceder</button>
+      <Link to="/home">
+        <button className="button__model1">Acceder</button>
+      </Link>
       <div className="landing__carrousel">
-        <div className="landing__carrousel__card">Conoce tu perro favorito</div>
-        <div className="landing__carrousel__card">Filtra razas</div>
-        <div className="landing__carrousel__card">Agrega un nuevo perro</div>
-        <div className="landing__carrousel__card">Todas las razas</div>
-        <div className="landing__carrousel__card">Levalos a todas partes</div>
-        <div className="landing__carrousel__card">Dogs responsive</div>
+        <Link className="link" to="/home">
+          <div className="landing__carrousel__card">
+            Conoce tu perro favorito
+          </div>
+        </Link>
+        <Link className="link" to="/home">
+          <div className="landing__carrousel__card">Filtra razas</div>
+        </Link>
+        <Link className="link" to="/home">
+          <div className="landing__carrousel__card">Agrega un nuevo perro</div>
+        </Link>
+        <Link className="link" to="/home">
+          <div className="landing__carrousel__card">Todas las razas</div>
+        </Link>
+
+        <Link className="link" to="/home">
+          <div className="landing__carrousel__card">Levalos a todas partes</div>
+        </Link>
+        <Link className="link" to="/home">
+          <div className="landing__carrousel__card">Dogs responsive</div>
+        </Link>
       </div>
     </LandingContainer>
   );
@@ -43,6 +62,7 @@ const LandingContainer = styled.div`
     position: absolute;
     right: 150px;
     top: 0;
+    margin-bottom: 20px;
     height: 400px;
     border-radius: 0 0 200px 200px;
   }

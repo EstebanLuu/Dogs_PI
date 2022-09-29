@@ -31,6 +31,11 @@
   text-align: start;
 }
 
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 :root {
   /* Colors */
   --main-color: rgb(252, 160, 39);
