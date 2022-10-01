@@ -24,23 +24,43 @@ router.get("/", async (req, res, next) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, height_min, height_max, weight_min, weight_max, temperament } =
-    req.body;
-  if (!name || !height_min || !height_max || !weight_min || !weight_max) {
-    return res.status(400).send({ msg: "Falta enviar datos obligatorios" });
+  const {
+    name,
+    height_min,
+    height_max,
+    weight_min,
+    weight_max,
+    temperament,
+    image,
+  } = req.body;
+
+  if (
+    !name ||
+    !height_min ||
+    !height_max ||
+    !weight_min ||
+    !weight_max ||
+    !temperament
+  ) {
+    return res.status(404).send("Faltan Datos");
   }
   try {
-    const dog = await Dog.create(req.body);
-
-    let tempDb = await Temperament.findAll({
-      where: { id: temperament },
+    const dogCreated = await Dog.create({
+      name,
+      height_min,
+      height_max,
+      weight_min,
+      weight_max,
+      image,
+      temperament,
     });
 
-    await dog.addTemperament(temperament);
-
-    return res.status(201).send({ msg: "Perro creado correctamente" });
-  } catch (error) {
-    console.log(error);
+    let temperDb = await Temperament.findAll({ where: { name: temperament } });
+    await dogCreated.addTemperament(temperDb);
+    return res.status(202).send(dogCreated);
+  } catch (e) {
+    console.log(e);
+    return res.status(404).send("No se pudo crear la raza del perro");
   }
 });
 

@@ -40,6 +40,8 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.TEXT,
+        defaultValue:
+          "https://img.freepik.com/fotos-premium/teckel-perro-salchicha-mira-adelante-aislado-sobre-fondo-blanco_104627-2781.jpg?w=2000",
       },
       creadoEnDB: {
         type: DataTypes.BOOLEAN,
