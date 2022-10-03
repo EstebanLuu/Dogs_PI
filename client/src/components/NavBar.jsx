@@ -66,7 +66,7 @@ function NavBar() {
               value={nameDog}
             />
             <button
-              className={nameDog.length > 0 ? "cleaner active" : "cleaner"}
+              className={nameDog.length > 0 ? "cleaner" : "cleaner"}
               onClick={handleClick}
             >
               <img className="lupita" src={Lupa} alt="lupa" />
@@ -75,7 +75,7 @@ function NavBar() {
           <div
             className={
               nameDog.length !== 0
-                ? "divSearchBar_Results active"
+                ? "divSearchBar_Results"
                 : "divSearchBar_Results"
             }
           >
@@ -83,8 +83,8 @@ function NavBar() {
               {nameDog &&
                 dogsHome.slice(0, 10).map((d, i) => {
                   return (
-                    <div>
-                      <Link className="results" to={`/home/${d.id}`} key={i}>
+                    <div key={i}>
+                      <Link className="results" to={`/home/${d.id}`}>
                         {d.name}
                       </Link>
                     </div>
@@ -94,16 +94,14 @@ function NavBar() {
           </div>
         </div>
         <img
-          className={`menu ${menu ? "menu-responsive" : "menu"}`}
+          className={`menu ${
+            menu ? "menu-responsive AllCardsDisplayNone " : "menu"
+          }`}
           src={Menu}
           alt=""
           onClick={handleClickMenu}
         />
       </div>
-      <div
-        className={`wrapper ${menu ? "wrapper-responsive" : ""}`}
-        onClick={handleClickMenu}
-      ></div>
     </NavbarContainer>
   );
 }
@@ -122,7 +120,7 @@ const NavbarContainer = styled.div`
   }
 
   .title {
-    z-index: 100;
+    z-index: 21000;
     margin: 0px;
   }
 
@@ -135,7 +133,6 @@ const NavbarContainer = styled.div`
 
   .search-div {
     display: flex;
-    z-index: 100;
     align-items: center;
     justify-content: center;
   }
@@ -181,13 +178,8 @@ const NavbarContainer = styled.div`
 
   .list-searchbar-responsive {
     top: -3000px;
+    background: #e6e6e6;
     left: -3000px;
-  }
-
-  .wrapper {
-    top: -3000px;
-    left: -3000px;
-    transition: 0.5s;
   }
 
   .divSearchBar_Results {
@@ -195,8 +187,21 @@ const NavbarContainer = styled.div`
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 300px;
+    justify-content: flex-start;
+    width: 200px;
+  }
+
+  .div_nameResult {
+    background: #fff;
+    border-radius: 0 0 5px 5px;
+    a {
+      text-decoration: none;
+      color: black;
+      padding: 3px 5px;
+      &:hover {
+        color: var(--main-color);
+      }
+    }
   }
 
   @media screen and (max-width: 992px) {
@@ -219,31 +224,27 @@ const NavbarContainer = styled.div`
       height: 100vh;
       top: 0;
       left: 0;
-      color: #fff;
+      color: #000000;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       position: fixed;
+      background: #fff;
     }
 
     .list-name {
       margin: 20px;
-    }
-
-    .wrapper-responsive {
-      top: 0;
-      left: 0;
-      background: #141414;
-      position: absolute;
-      width: 100%;
-      z-index: -1;
-      height: 100%;
+      color: black;
     }
 
     .menu {
       display: initial;
       right: 25px;
       cursor: pointer;
+    }
+
+    .menu-responsive {
+      color: white;
     }
 
     .results {
@@ -299,7 +300,12 @@ const NavbarContainer = styled.div`
       justify-content: center;
     }
     .search-bar {
-      padding: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px;
       padding-top: 10px;
     }
   }

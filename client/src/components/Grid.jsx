@@ -7,13 +7,13 @@ import Loader from "./Loader.jsx";
 import Pagination from "./Pagination";
 import styled from "styled-components";
 
-function AllCards({
+const AllCards = ({
   currentPage,
   setCurrentPage,
   dogsPerPage,
   indexOfFirstDog,
   indexOfLastDog,
-}) {
+}) => {
   const dispatch = useDispatch();
   const dogs = useSelector((state) => state.dogs);
 
@@ -21,24 +21,18 @@ function AllCards({
     dispatch(getDogs());
   }, [dispatch]);
 
-  // console.log(currentPage)
-  // console.log(setCurrentPage)
+  console.log(currentPage);
+  console.log(setCurrentPage);
 
-  // ------ PAGINADO ------
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [dogsPerPage] = useState(8);
-
-  // const indexOfLastDog = currentPage * dogsPerPage;
-  // const indexOfFirstDog = indexOfLastDog - dogsPerPage;
   const CurrentDog = dogs.slice(indexOfFirstDog, indexOfLastDog);
   const paginate = (page) => {
     setCurrentPage(page);
   };
 
   // ------ CARDS ------
-  function cards() {
+  const cards = () => {
     return CurrentDog.map((dog, i) => (
-      <Link to={`/home/${dog.id}`} key={i} className="link_all_cards">
+      <Link to={`/home/${dog.id}`} key={i} className="link__info__dog link ">
         <Card
           image={dog.image}
           name={dog.name}
@@ -48,11 +42,11 @@ function AllCards({
         />
       </Link>
     ));
-  }
+  };
 
   // ------ return component (renderizado) ------
   return (
-    <div className="AllCards_component">
+    <CardsContainer className="AllCards_component">
       <div className="AllCards">{dogs.length !== 0 ? cards() : <Loader />}</div>
       <Pagination
         dogsPerPage={dogsPerPage}
@@ -61,8 +55,23 @@ function AllCards({
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />
-    </div>
+    </CardsContainer>
   );
-}
+};
 
 export default AllCards;
+
+const CardsContainer = styled.div`
+  .link__info__dog {
+    color: #fff;
+    font-size: var(--p);
+  }
+
+  .AllCards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+  }
+`;
