@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 function Pagination({
   dogsPerPage,
@@ -43,10 +44,10 @@ function Pagination({
   }
 
   return (
-    <div className="pagination_component">
+    <PaginationContainer>
       <ul className="pagination">
-        <button className="page" onClick={handlePrev}>
-          Prev
+        <button className="page__PN" onClick={handlePrev}>
+          🠸
         </button>
         {pageNumbers &&
           pageNumbers.map((page, i) => {
@@ -65,12 +66,91 @@ function Pagination({
               return null;
             }
           })}
-        <button className="page" onClick={handleNext}>
-          Next
+        <button className="page__PN" onClick={handleNext}>
+          🠺
         </button>
       </ul>
-    </div>
+    </PaginationContainer>
   );
 }
 
 export default Pagination;
+
+const PaginationContainer = styled.div`
+  margin-top: 10px;
+  user-select: none;
+  .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 11px;
+  }
+  .pagination_item {
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black-color);
+    height: 50px;
+    width: 50px;
+    background-color: var(--light-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      background-color: var(--main-color-hover);
+      color: var(--light-color);
+    }
+  }
+
+  .page__PN {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 500;
+    height: 50px;
+    width: 50px;
+    border: none;
+    background: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      color: var(--main-color);
+    }
+  }
+  .page.active {
+    background-color: var(--main-color);
+    color: var(--light-color);
+  }
+
+  @media screen and (max-width: 576px) {
+    .pagination {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      gap: 5px;
+    }
+    .page {
+      font-size: 12px;
+      font-weight: 300;
+      height: 28px;
+      width: 28px;
+    }
+    .page__PN {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--light-color);
+      height: 28px;
+      width: 28px;
+      border-radius: 5px;
+    }
+  }
+`;

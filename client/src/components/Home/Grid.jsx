@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getDogs } from "../Redux/actions/index";
+import { getDogs } from "../../Redux/actions/index";
 import Card from "./Card";
 import { Link } from "react-router-dom";
-import Loader from "./Loader.jsx";
-import Pagination from "./Pagination";
+import Loader from "../Loader.jsx";
+import Pagination from "../Pagination";
 import styled from "styled-components";
 
-const AllCards = ({
+function AllCards({
   currentPage,
   setCurrentPage,
   dogsPerPage,
   indexOfFirstDog,
   indexOfLastDog,
-}) => {
+}) {
   const dispatch = useDispatch();
   const dogs = useSelector((state) => state.dogs);
 
@@ -57,13 +57,14 @@ const AllCards = ({
       />
     </CardsContainer>
   );
-};
+}
 
 export default AllCards;
 
 const CardsContainer = styled.div`
+  margin: 0 var(--marginLR);
   .link__info__dog {
-    color: #fff;
+    color: #000000;
     font-size: var(--p);
   }
 

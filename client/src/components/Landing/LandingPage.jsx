@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import perrosalchicha from "../assets/perroSalchicha.jpg";
+import perrosalchicha from "../../assets/perroLabrador.jpg";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
@@ -63,8 +63,8 @@ const LandingContainer = styled.div`
     right: 150px;
     top: 0;
     margin-bottom: 20px;
-    height: 400px;
-    border-radius: 0 0 200px 200px;
+    height: 300px;
+    border-radius: 0 0 10px 300px;
   }
 
   .landing__text {
@@ -98,13 +98,14 @@ const LandingContainer = styled.div`
     text-align: center;
     height: 150px;
     width: 150px;
-    margin: 0 7px;
-    color: var(--main-color);
-    box-shadow: rgba(75, 58, 255, 0.2) 0px 8px 24px;
+    margin: 10px 7px;
+    border: var(--border-color);
+    color: var(--black-color);
+    box-shadow: rgba(78, 158, 172, 0.541) 0px 8px 24px;
     border-radius: 10px;
     cursor: pointer;
     &:hover {
-      box-shadow: rgba(75, 58, 255, 0.2) 5px 16px 40px;
+      box-shadow: rgba(78, 158, 172, 0.7) 5px 16px 40px;
     }
   }
 
@@ -125,20 +126,12 @@ const LandingContainer = styled.div`
 
     .landing-img {
       position: initial;
-      width: 70%;
+      width: 100%;
       height: auto;
       border-radius: 20px;
     }
     .landing__text {
       width: 100%;
-    }
-  }
-  @media screen and (max-width: 576px) {
-    .landing-img {
-      position: initial;
-      width: 90%;
-      height: auto;
-      border-radius: 20px;
     }
   }
 `;

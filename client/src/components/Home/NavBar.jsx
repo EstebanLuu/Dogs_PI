@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { searchDogs } from "../Redux/actions/index.js";
+import { searchDogs } from "../../Redux/actions/index.js";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Lupa from "../assets/icons8-búsqueda.svg";
-import Menu from "../assets/menu.svg";
+import Lupa from "../../assets/icons8-búsqueda.svg";
+import Menu from "../../assets/menu.svg";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -128,6 +128,7 @@ const NavbarContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: transparent;
     width: 400px;
   }
 
@@ -178,7 +179,6 @@ const NavbarContainer = styled.div`
 
   .list-searchbar-responsive {
     top: -3000px;
-    background: #e6e6e6;
     left: -3000px;
   }
 
@@ -219,6 +219,7 @@ const NavbarContainer = styled.div`
     }
 
     .list-searchbar-responsive {
+      background: #e6e6e6;
       position: initial;
       width: 100%;
       height: 100vh;
@@ -271,42 +272,6 @@ const NavbarContainer = styled.div`
       align-items: center;
       justify-content: center;
       width: 100%;
-    }
-  }
-
-  @media screen and (max-width: 350px) {
-    .divSearchBar_Results {
-      position: initial;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .responsive-title {
-      display: initial;
-      display: flex;
-      background-color: #fff;
-      align-items: center;
-      justify-content: start;
-      width: 100%;
-    }
-    .menu {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .search-div {
-      width: 100%;
-      justify-content: center;
-    }
-    .search-bar {
-      right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 10px;
-      padding-top: 10px;
     }
   }
 `;

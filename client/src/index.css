@@ -16,7 +16,11 @@
   transition: 0.3s;
 }
 .button__model1 {
-  background: rgb(202, 128, 30);
+  background: var(--main-color);
+}
+
+.button__model1:hover {
+  background: var(--main-color-hover);
 }
 
 .search-bar {
@@ -38,8 +42,14 @@
 
 :root {
   /* Colors */
-  --main-color: rgb(252, 160, 39);
+  /* --main-color: rgb(252, 160, 39);
+  --main-color-hover: rgba(180, 127, 57, 0.884); */
+
+  --main-color: rgb(39, 220, 252);
+  --main-color-hover: rgb(0, 177, 204);
+  --black-color: #181818;
   --light-color: #fff;
+  --border-color: 1px solid #ebebeb;
 
   /* font-size */
 
