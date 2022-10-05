@@ -1,9 +1,20 @@
 import React from "react";
+import styled from "styled-components";
 
-function DogDetail({ dog }) {
+function DogCard({ dog }) {
   return (
-    <div className="dogDetail">
-      <div className="left">
+    <DogCardContainer>
+      <div className="dog__detail__container">{dog.id}</div>
+      <div className="dog__detaial__img"></div>
+    </DogCardContainer>
+  );
+}
+
+export default DogCard;
+
+const DogCardContainer = styled.div``;
+
+/* <div className="left">
         <div className="profile">
           <div className="div_dog_profile">
             <img className="image_dog_profile" src={dog?.image} alt="dog" />
@@ -50,9 +61,4 @@ function DogDetail({ dog }) {
         <div className="div_banner">
           <img className="banner" src={banner} alt="banner" />
         </div>
-      </div>
-    </div>
-  );
-}
-
-export default DogDetail;
+      </div> */

@@ -12,9 +12,6 @@ function Pagination({
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
-  // console.log(currentPage)
-  // console.log(setCurrentPage)
-
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalPosts / dogsPerPage); i++) {
@@ -46,7 +43,10 @@ function Pagination({
   return (
     <PaginationContainer>
       <ul className="pagination">
-        <button className="page__PN" onClick={handlePrev}>
+        <button
+          className={`${currentPage !== 1 ? "page__PN" : "arrow__DN"} `}
+          onClick={handlePrev}
+        >
           🠸
         </button>
         {pageNumbers &&
@@ -66,7 +66,10 @@ function Pagination({
               return null;
             }
           })}
-        <button className="page__PN" onClick={handleNext}>
+        <button
+          className={`${currentPage !== 22 ? "page__PN" : "arrow__DN"} `}
+          onClick={handleNext}
+        >
           🠺
         </button>
       </ul>
@@ -87,7 +90,7 @@ const PaginationContainer = styled.div`
   }
   .pagination_item {
     border-radius: 5px;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
   .page {
     display: flex;
@@ -126,6 +129,13 @@ const PaginationContainer = styled.div`
       color: var(--main-color);
     }
   }
+
+  .arrow__DN {
+    visibility: hidden;
+    height: 50px;
+    width: 50px;
+  }
+
   .page.active {
     background-color: var(--main-color);
     color: var(--light-color);
@@ -145,12 +155,16 @@ const PaginationContainer = styled.div`
       width: 28px;
     }
     .page__PN {
-      font-size: 12px;
+      font-size: 20px;
       font-weight: 300;
-      color: var(--light-color);
+      color: var(--black-color);
       height: 28px;
       width: 28px;
       border-radius: 5px;
+    }
+    .arrow__DN {
+      height: 28px;
+      width: 28px;
     }
   }
 `;

@@ -30,7 +30,8 @@ export const getDetail = (id) => {
       return dispatch({
         type: GET_DETAILS,
         payload: details,
-      });
+      })
+      
     } catch (error) {
       console.log(error);
     }

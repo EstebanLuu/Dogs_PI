@@ -1,54 +1,45 @@
-// import React, { useEffect } from "react";
-// import styled from "styled-components";
-// import { useSelector, useDispatch } from "react-redux";
-// import { getDetail } from "../../Redux/actions/index";
-
-// const DogDetail = (props) => {
-//   const dispatch = useDispatch();
-//   const dog = useSelector((state) => state.details);
-//   const id = props.match.params.id;
-
-//   useEffect(() => {
-//     dispatch(getDetail(id));
-//     console.log(id);
-//   }, [dispatch, id]);
-
-//   // return Dog.map((dog, i) => (
-//   <DogDetailContainer>
-//     <div className="DogDetail__card flex">
-//       <h1>aca va la data</h1>
-//       <div className="DogDetail__text"></div>
-//       <div className="DogDetail__img"></div>
-//     </div>
-//   </DogDetailContainer>;
-//   // ));
-// };
-
-// export default DogDetail;
-
-// const DogDetailContainer = styled.div``;
-
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import DogDetail from "./DogDetail";
 import { getDetail } from "../../Redux/actions/index.js";
+import Footer from "../ReusableComponents/Footer";
+import DogCard from "./DogCard";
+import { useParams } from "react-router-dom";
+import Navbar from "../Home/NavBar";
 
-function Details(props) {
+const DogDetail = () => {
   const dispatch = useDispatch();
   const dog = useSelector((state) => state.details);
-  const id = props.match.params.id;
+
+  const { id } = useParams();
 
   useEffect(() => {
     dispatch(getDetail(id));
   }, [dispatch, id]);
 
   return (
-    <div className="details_component">
-      <Header />
-      <DogDetail dog={dog[0]} />
+    <DogDetailContainer className="details_component">
+      <Navbar />
+      <DogCard dog={dog[0]} />
       <Footer />
-    </div>
+    </DogDetailContainer>
   );
-}
+};
 
-export default Details;
+export default DogDetail;
+
+const DogDetailContainer = styled.div`
+  .details_component {
+    padding: 0 30px;
+  }
+  @media screen and (max-width: 574px) {
+    .details_component {
+      flex-direction: column;
+    }
+  }
+  @media screen and (max-width: 375px) {
+    .details_component {
+      padding: 0 15px;
+    }
+  }
+`;

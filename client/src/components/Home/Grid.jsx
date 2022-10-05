@@ -21,9 +21,6 @@ function AllCards({
     dispatch(getDogs());
   }, [dispatch]);
 
-  console.log(currentPage);
-  console.log(setCurrentPage);
-
   const CurrentDog = dogs.slice(indexOfFirstDog, indexOfLastDog);
   const paginate = (page) => {
     setCurrentPage(page);
