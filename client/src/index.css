@@ -40,6 +40,10 @@
   color: black;
 }
 
+.flex {
+  display: flex;
+}
+
 :root {
   /* Colors */
   /* --main-color: rgb(252, 160, 39);

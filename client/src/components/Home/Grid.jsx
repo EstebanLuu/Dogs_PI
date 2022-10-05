@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getDogs } from "../../Redux/actions/index";
 import Card from "./Card";
 import { Link } from "react-router-dom";
-import Loader from "../Loader.jsx";
-import Pagination from "../Pagination";
+import Loader from "./Loader.jsx";
+import Pagination from "./Pagination";
 import styled from "styled-components";
 
 function AllCards({
