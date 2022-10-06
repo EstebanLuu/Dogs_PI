@@ -29,6 +29,8 @@ const DogDetail = () => {
 export default DogDetail;
 
 const DogDetailContainer = styled.div`
+  height: 100%;
+  width: 100%;
   .details_component {
     padding: 0 30px;
   }

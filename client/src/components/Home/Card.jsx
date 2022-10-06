@@ -62,6 +62,7 @@ const CardContainer = styled.div`
     height: 130px;
     text-decoration: none;
     background-color: #ffffff;
+    user-select: text;
   }
 
   .card_name_dog {
