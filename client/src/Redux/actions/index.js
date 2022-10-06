@@ -30,8 +30,7 @@ export const getDetail = (id) => {
       return dispatch({
         type: GET_DETAILS,
         payload: details,
-      })
-      
+      });
     } catch (error) {
       console.log(error);
     }
@@ -42,13 +41,13 @@ export const dogPost = (payload) => {
   return async function (dispatch) {
     try {
       await axios.post("http://localhost:3001/dogs", payload);
-      alert("perro creado correctamente");
+      alert("El perro se ha creado correctamente");
       return dispatch({
         type: DOG_POST,
       });
     } catch (error) {
       console.log(error);
-      alert("perro no creado");
+      alert("El perro no pudo crearse");
     }
   };
 };

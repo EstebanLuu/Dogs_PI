@@ -2,54 +2,62 @@ import React from "react";
 import styled from "styled-components";
 import perrosalchicha from "../../assets/perroLabrador.jpg";
 import { Link } from "react-router-dom";
+import Footer from "../ReusableComponents/Footer";
 
 const LandingPage = () => {
   return (
-    <LandingContainer>
-      <Link className="link" to="/home">
-        <h1 className="title">Page Dogs</h1>
-      </Link>
-      <div className="landing-img-containter">
-        <img className="landing-img" src={perrosalchicha} alt="" />
-      </div>
-      <div className="landing__text">
-        <h2 className="landing__text__title">
-          Lorem ipsum dolor sit, amet consectetur adipisicing.
-        </h2>
-        <p className="landing__text__p">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, ipsa
-          nihil temporibus qui soluta est. Tenetur aliquid optio doloremque
-          adipisci, mollitia iusto quis possimus fugit sed neque repellendus
-          necessitatibus! Aspernatur?
-        </p>
-      </div>
-      <Link to="/home">
-        <button className="button__model1">Acceder</button>
-      </Link>
-      <div className="landing__carrousel">
+    <>
+      <LandingContainer>
         <Link className="link" to="/home">
-          <div className="landing__carrousel__card">
-            Conoce tu perro favorito
-          </div>
+          <h1 className="title">Page Dogs</h1>
         </Link>
-        <Link className="link" to="/home">
-          <div className="landing__carrousel__card">Filtra razas</div>
+        <div className="landing-img-containter">
+          <img className="landing-img" src={perrosalchicha} alt="" />
+        </div>
+        <div className="landing__text">
+          <h2 className="landing__text__title">
+            Lorem ipsum dolor sit, amet consectetur adipisicing.
+          </h2>
+          <p className="landing__text__p">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, ipsa
+            nihil temporibus qui soluta est. Tenetur aliquid optio doloremque
+            adipisci, mollitia iusto quis possimus fugit sed neque repellendus
+            necessitatibus! Aspernatur?
+          </p>
+        </div>
+        <Link to="/home">
+          <button className="button__model1">Acceder</button>
         </Link>
-        <Link className="link" to="/home">
-          <div className="landing__carrousel__card">Agrega un nuevo perro</div>
-        </Link>
-        <Link className="link" to="/home">
-          <div className="landing__carrousel__card">Todas las razas</div>
-        </Link>
+        <div className="landing__carrousel">
+          <Link className="link" to="/home">
+            <div className="landing__carrousel__card">
+              Conoce tu perro favorito
+            </div>
+          </Link>
+          <Link className="link" to="/home">
+            <div className="landing__carrousel__card">Filtra razas</div>
+          </Link>
+          <Link className="link" to="/home">
+            <div className="landing__carrousel__card">
+              Agrega un nuevo perro
+            </div>
+          </Link>
+          <Link className="link" to="/home">
+            <div className="landing__carrousel__card">Todas las razas</div>
+          </Link>
 
-        <Link className="link" to="/home">
-          <div className="landing__carrousel__card">Levalos a todas partes</div>
-        </Link>
-        <Link className="link" to="/home">
-          <div className="landing__carrousel__card">Dogs responsive</div>
-        </Link>
-      </div>
-    </LandingContainer>
+          <Link className="link" to="/home">
+            <div className="landing__carrousel__card">
+              Levalos a todas partes
+            </div>
+          </Link>
+          <Link className="link" to="/home">
+            <div className="landing__carrousel__card">Dogs responsive</div>
+          </Link>
+        </div>
+      </LandingContainer>
+      <Footer />
+    </>
   );
 };
 

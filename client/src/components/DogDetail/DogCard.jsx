@@ -1,57 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Img from "../../assets/dogVioleta.jpg";
+import Img from "../../assets/imagenDefault.jpg";
+import Curiosities from "../Curiosities/Curiosities";
 
 function DogCard({ dog }) {
+  const [curiosidad, setCuriosidad] = useState("");
+
+  const datoCurioso = () => {
+    const resultado = Math.floor(Math.random() * Curiosities.length);
+    return Curiosities[resultado]["value"];
+  };
+
+  const handleClick = () => {
+    setCuriosidad(datoCurioso());
+  };
+
   return (
     <DogCardContainer>
+      <div className="deco-container">
+        <h1 className="deco-1">Canine Details</h1>
+        <h1 className="deco-2">.</h1>
+        <h1 className="deco-3">🐕</h1>
+      </div>
       <div className="dog__detail__container">
         <div className="dog__detail__header">
-          <h1 className="dog__detail__name">Affenpinscher</h1>
+          <div className="dog__detail__name">
+            <h4 className="dog__detail__razaCR">Raza: </h4>
+            <h4 className="dog__detail__razaCN">Affenpinscher</h4>
+          </div>
           <div className="dog__detail__img-container">
             <img className="dog__detail__img" src={Img} alt="" />
           </div>
         </div>
+        <h4 className="dog__detail__stats">Check my stats</h4>
         <div className="dog__detail__characteristics">
-          <div className="dog__detail__characteristics-item">
-            Caracteristicas
+          <div className="dog__detail__item">
+            <div className="item-detail detail-title">Caracteristicas</div>
+            <div className="item-detail">MIN</div>
+            <div className="item-detail">MAX</div>
           </div>
-          <div className="dog__detail__characteristics-item-title">MIN</div>
-          <div className="dog__detail__characteristics-item">MAX</div>
-          <div className="dog__detail__characteristics-item">ALTURA</div>
-          <div className="dog__detail__characteristics-item">40 Cm</div>
-          <div className="dog__detail__characteristics-item">20 cm</div>
-          <div className="dog__detail__characteristics-item-title">PESO</div>
-          <div className="dog__detail__characteristics-item">5 KG</div>
-          <div className="dog__detail__characteristics-item">10 kg</div>
-          <div className="dog__detail__characteristics-item-title">
-            AÑOS DE VIDA
+
+          <div className="dog__detail__item">
+            <div className="item-detail detail-title">ALTURA</div>
+            <div className="item-detail">40 Cm</div>
+            <div className="item-detail">20 cm</div>
           </div>
-          <div className="dog__detail__characteristics-item">11 AÑOS</div>
-          <div className="dog__detail__characteristics-item">17 AÑOS</div>
-          <div className="dog__detail__characteristics-item-title">
-            TEMPERAMENTO{" "}
+
+          <div className="dog__detail__item">
+            <div className="item-detail detail-title">PESO</div>
+            <div className="item-detail">5 KG</div>
+            <div className="item-detail">10 kg</div>
           </div>
-          <div className="dog__detail__characteristics-item-diferent">
-            Wild, Hardworking, Dutiful
+
+          <div className="dog__detail__item">
+            <div className="item-detail detail-title">AÑOS DE VIDA</div>
+            <div className="item-detail">11 AÑOS</div>
+            <div className="item-detail">17 AÑOS</div>
           </div>
-        </div>
-      </div>
-      <div className="dog__detail__decoration">
-        <div className="deco">
-          <div>
-            <h1 className="deco-1">canine curiosities</h1>
-            <h1 className="deco-2">.</h1>
-            <h1 className="deco-3">🐕</h1>
+
+          <div className="dog__detail__item">
+            <div className="item-detail-dif-1">TEMPERAMENTO</div>
+            <div className="item-detail-dif-2">
+              Wild, Hardworking, Dutiful Wild, Hardworking, DutifulWild,
+              Hardworking, Dutiful{" "}
+            </div>
           </div>
-          <p className="dog__detail__decoration__curiosities">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, at ab
-            consequuntur praesentium quisquam voluptatum nesciunt itaque
-            blanditiis earum fugiat aut dolores temporibus necessitatibus iste
-            eius. Expedita neque ab autem impedit fuga suscipit aspernatur
-            architecto magnam hic quibusdam aut libero quis soluta ut recusandae
-            eum, optio perspiciatis quae voluptas corporis.
-          </p>
         </div>
       </div>
     </DogCardContainer>
@@ -62,23 +75,38 @@ export default DogCard;
 
 const DogCardContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
   .dog__detail__container {
-    width: 50%;
+    border-radius: 10px;
     text-align: center;
     align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: var(--border-color);
   }
 
   .dog__detail__header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    height: 180px;
     overflow: hidden;
+    margin-bottom: 10px;
   }
 
   .dog__detail__name {
-    width: 100%;
+    font-size: 20px;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: column;
   }
 
   .dog__detail__img-container {
@@ -88,72 +116,70 @@ const DogCardContainer = styled.div`
     height: 200px;
   }
 
+  .dog__detail__razaCR {
+    font-size: 15px;
+    padding: 0 5px;
+  }
+
+  .dog__detail__razaCN {
+    font-size: 17px;
+    padding: 0 5px;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .dog__detail__stats {
+    font-size: 15px;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+
   .dog__detail__img {
     height: 100%;
     border-radius: 10px 5px 10px 5px;
   }
 
   .dog__detail__characteristics {
-    width: 100%;
+    width: 500px;
     background: #fdfdfd;
-    border: var(--border-color);
     border-radius: 10px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 50px;
   }
 
-  .dog__detail__characteristics-item {
+  .dog__detail__item {
+    display: flex;
+  }
+
+  .item-detail {
+    text-align: start;
+    padding: 10px 0;
+    padding-left: 5px;
     border: var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 166px;
   }
 
-  .dog__detail__characteristics-item-title {
+  .item-detail-dif-1 {
+    width: 33%;
+    text-align: start;
+    padding: 10px 0;
+    padding-left: 5px;
     border: var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
-  .dog__detail__characteristics-item-diferent {
-    grid-column-start: 2;
-    grid-column-end: 4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .item-detail-dif-2 {
+    width: 67%;
+    text-align: start;
+    padding: 10px 0;
+    padding-left: 5px;
+    border: var(--border-color);
   }
 
-  .dog__detail__decoration {
-    background: #2193b0; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to bottom,
-      #6dd5ed,
-      #2193b0
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to bottom,
-      #6dd5ed,
-      #2193b0
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    width: 50%;
+  .deco-container {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-
-  .deco {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 20px;
-    color: var(--light-color);
-    text-align: center;
-    h1 {
-      display: inline-block;
-    }
+    color: var(--main-color);
   }
 
   .deco-1 {
@@ -166,9 +192,6 @@ const DogCardContainer = styled.div`
 
   .deco-3 {
     animation: bounce3 0.5s alternate infinite ease-in;
-  }
-  .deco-4 {
-    animation: bounce4 0.5s alternate infinite ease-in;
   }
 
   @keyframes bounce2 {
@@ -192,6 +215,67 @@ const DogCardContainer = styled.div`
   .dog__detail__decoration__curiosities {
     width: 80%;
     font-size: 15px;
+  }
+
+  @media screen and (max-width: 992px) {
+  }
+
+  @media screen and (max-width: 768px) {
+    .dog__detail__characteristics {
+      width: 400px;
+      background: #fdfdfd;
+      border-radius: 10px;
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .dog__detail__header {
+      flex-direction: column;
+      min-height: 300px;
+      align-items: center;
+    }
+
+    .dog__detail__name {
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dog__detail__characteristics {
+      width: 300px;
+      background: #fdfdfd;
+      border-radius: 10px;
+    }
+
+    .item-detail {
+      width: 70px;
+    }
+
+    .item-detail-dif-1 {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0;
+      padding-left: 5px;
+      border: var(--border-color);
+    }
+
+    .item-detail-dif-2 {
+      width: 50%;
+      text-align: start;
+      padding: 10px 0;
+      padding-left: 5px;
+      border: var(--border-color);
+    }
+    .detail-title {
+      width: 190px;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .dog__detail__container {
+      padding: 0;
+    }
   }
 `;
 

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import NavBar from "./NavBar";
+import NavBar from "../ReusableComponents/NavBar";
 import Grid from "./Grid";
+import Footer from "../ReusableComponents/Footer";
 
 function Home() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +21,7 @@ function Home() {
         indexOfFirstDog={indexOfFirstDog}
         indexOfLastDog={indexOfLastDog}
       />
+      <Footer />
     </HomeContainer>
   );
 }

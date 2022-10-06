@@ -81,6 +81,7 @@ export default Pagination;
 
 const PaginationContainer = styled.div`
   margin-top: 10px;
+  margin-bottom: 10px;
   user-select: none;
   .pagination {
     display: flex;
