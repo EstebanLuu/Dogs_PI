@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { dogPost, getTemperament } from "../../Redux/actions/index";
+import { dogPost } from "../../Redux/actions/index";
+import { getTemperament } from "../../Redux/actions/index";
 import styled from "styled-components";
 
 function validar(input) {
@@ -22,6 +23,8 @@ function validar(input) {
     errors.height_max = "debe ser menor a 85 CM";
   } else if (!/^[0-9]+$/.test(input.height_max)) {
     errors.height_max = "solo puede contener numeros";
+  } else if (parseInt(input.height_max) < 10) {
+    errors.height_max = "El perro debe tener más de 10 cm";
   }
 
   //agregar a los otros inputs
@@ -32,6 +35,8 @@ function validar(input) {
     errors.height_min = "debe ser menor al max";
   } else if (!/^[0-9]+$/.test(input.height_min)) {
     errors.height_min = "solo puede contener numeros";
+  } else if (parseInt(input.height_min) < 10) {
+    errors.height_min = "El perro debe tener más de 10 cm";
   }
 
   //weight
@@ -41,23 +46,31 @@ function validar(input) {
     errors.weight_max = "debe ser menor a 90 KG";
   } else if (!/^[0-9]+$/.test(input.weight_max)) {
     errors.weight_max = "solo puede contener numeros";
+  } else if (parseInt(input.weight_max) <= 1) {
+    errors.weight_max = "debe ser mayor a 1 KG";
   }
 
   if (!input.weight_min) {
     errors.weight_min = "peso min requerido";
   } else if (parseInt(input.weight_min) >= parseInt(input.weight_max)) {
     errors.weight_min = "debe ser menor al max";
+  } else if (!/^[0-9]+$/.test(input.weight_min)) {
+    errors.weight_min = "solo puede contener numeros";
+  } else if (parseInt(input.weight_min) <= 1) {
+    errors.weight_min = "debe ser mayor a 1 KG";
   }
 
   //life_span
   if (parseInt(input.life_span_max) > 20) {
-    errors.life_span_max = "debe ser menor a 20 Años";
+    errors.life_span_max = "Debe ser menor a 20 Años";
   } else if (!/^[0-9]+$/.test(input.life_span_max)) {
     errors.life_span_max = "solo puede contener numeros";
+  } else if (parseInt(input.life_span_max) < 6) {
+    errors.life_span_max = "Debe ser mayor a 5 Años";
   }
 
-  if (parseInt(input.life_span_min) >= parseInt(input.life_span_max)) {
-    errors.life_span_min = "debe ser menor al max";
+  if (parseInt(input.life_span_min) < 6) {
+    errors.life_span_min = "Debe ser mayor a 5 Años";
   } else if (!/^[0-9]+$/.test(input.life_span_min)) {
     errors.life_span_min = "solo puede contener numeros";
   }
@@ -77,7 +90,6 @@ function Form() {
   const [errors, setErrors] = useState({});
 
   const [input, setInput] = useState({
-    image: "",
     name: "",
     height_min: "",
     height_max: "",
@@ -85,6 +97,7 @@ function Form() {
     weight_max: "",
     life_span_min: "",
     life_span_max: "",
+    image: "",
     temperament: [],
   });
 
@@ -134,8 +147,8 @@ function Form() {
       try {
         dispatch(dogPost(input));
         setInput({
-          image: "",
           name: "",
+          image: "",
           height_min: "",
           height_max: "",
           weight_min: "",
@@ -401,11 +414,13 @@ const FormContainer = styled.div`
     font-weight: 600;
     color: var(--black-color);
   }
+
   .form {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
   }
+
   label {
     font-size: 14px;
     font-weight: bold;
@@ -430,6 +445,7 @@ const FormContainer = styled.div`
     display: flex;
     justify-content: space-between;
   }
+
   .unidad {
     font-weight: 700;
     font-size: 14px;
@@ -437,17 +453,21 @@ const FormContainer = styled.div`
     padding: 15px 2px 15px 5px;
     color: var(--light-color2);
   }
+
   .label_min {
     opacity: 0;
   }
+
   .form_input.min,
   .form_input.max {
     max-width: 165px;
   }
+
   .form_input.min_years,
   .form_input.max_years {
     max-width: 165px;
   }
+
   .form_input {
     border: none;
     background: transparent;
@@ -459,17 +479,17 @@ const FormContainer = styled.div`
     color: black;
     letter-spacing: 0.6px;
     width: 100%;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0px;
+      color: var(--light-color2);
+    }
   }
 
-  .form_input:focus {
-    outline: none;
-  }
-  .form_input::placeholder {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0px;
-    color: var(--light-color2);
-  }
   .ul_temp {
     display: flex;
     flex-wrap: wrap;
@@ -521,6 +541,7 @@ const FormContainer = styled.div`
       outline: none;
     }
   }
+
   .submit.none {
     background-color: red;
     cursor: not-allowed;
@@ -540,9 +561,11 @@ const FormContainer = styled.div`
     font-size: 12px;
     font-weight: 700;
   }
+
   .div_form_final_temps {
     max-width: 500px;
   }
+
   .delete_temp {
     border: none;
     color: var(--light-color2);

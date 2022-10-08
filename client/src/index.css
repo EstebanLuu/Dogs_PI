@@ -44,6 +44,10 @@
   display: flex;
 }
 
+a {
+  text-decoration: none;
+}
+
 :root {
   /* Colors */
   /* --main-color: rgb(252, 160, 39);

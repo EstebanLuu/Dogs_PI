@@ -48,14 +48,13 @@ const CardContainer = styled.div`
 
   .card__image-container {
     width: 180px;
-    height: 150px;
+    height: 180px;
     overflow: hidden;
   }
 
   .card__image {
     pointer-events: none;
     width: 100%;
-    height: auto;
   }
 
   .info_card {

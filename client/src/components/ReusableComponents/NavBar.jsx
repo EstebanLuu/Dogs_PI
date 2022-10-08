@@ -117,6 +117,8 @@ const NavbarContainer = styled.div`
     align-items: center;
     justify-content: space-around;
     border-radius: 0;
+    margin-bottom: 20px;
+    border: var(--border-color);
   }
 
   .title {

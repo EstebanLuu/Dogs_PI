@@ -7,10 +7,10 @@ import DogCard from "./DogCard";
 import { useParams } from "react-router-dom";
 import Navbar from "../ReusableComponents/NavBar";
 
-const DogDetail = () => {
+const DogDetail = (props) => {
   const dispatch = useDispatch();
   const dog = useSelector((state) => state.details);
-
+  // const id = props.match.params.id;
   const { id } = useParams();
 
   useEffect(() => {

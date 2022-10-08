@@ -8,7 +8,7 @@ function Pagination({
   currentPage,
   setCurrentPage,
 }) {
-  const [pageNumberLimit /*  setPageNumberLimit */] = useState(5);
+  const [pageNumberLimit, setPageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
 
@@ -37,6 +37,31 @@ function Pagination({
         setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit);
         setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit);
       }
+
+      if (currentPage - 1 === 20) {
+        setMaxPageNumberLimit(20);
+        setMinPageNumberLimit(15);
+      }
+    }
+  }
+
+  function handlePrevUltimate() {
+    if (currentPage !== 1) {
+      setCurrentPage((currentPage = 1));
+    }
+    if (currentPage === 1 || currentPage > 1) {
+      setMaxPageNumberLimit(5);
+      setMinPageNumberLimit(0);
+    }
+  }
+
+  function handleNextUltimate() {
+    if (currentPage !== pageNumbers.length) {
+      setCurrentPage((currentPage = 22));
+    }
+    if (currentPage + 1 > maxPageNumberLimit) {
+      setMaxPageNumberLimit(22);
+      setMinPageNumberLimit(20);
     }
   }
 
@@ -45,9 +70,16 @@ function Pagination({
       <ul className="pagination">
         <button
           className={`${currentPage !== 1 ? "page__PN" : "arrow__DN"} `}
+          onClick={handlePrevUltimate}
+        >
+          «
+        </button>
+
+        <button
+          className={`${currentPage !== 1 ? "page__PN" : "arrow__DN"} `}
           onClick={handlePrev}
         >
-          🠸
+          ‹
         </button>
         {pageNumbers &&
           pageNumbers.map((page, i) => {
@@ -70,7 +102,14 @@ function Pagination({
           className={`${currentPage !== 22 ? "page__PN" : "arrow__DN"} `}
           onClick={handleNext}
         >
-          🠺
+          ›
+        </button>
+
+        <button
+          className={`${currentPage !== 22 ? "page__PN" : "arrow__DN"} `}
+          onClick={handleNextUltimate}
+        >
+          »
         </button>
       </ul>
     </PaginationContainer>
@@ -117,7 +156,7 @@ const PaginationContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 50px;
+    font-size: 30px;
     font-weight: 500;
     height: 50px;
     width: 50px;

@@ -8,9 +8,9 @@ function NewDog() {
   return (
     <>
       <Navbar />
-      <newDogContainer>
+      <NewDogContainer>
         <Form />
-      </newDogContainer>
+      </NewDogContainer>
       <Footer />
     </>
   );
@@ -18,7 +18,7 @@ function NewDog() {
 
 export default NewDog;
 
-const newDogContainer = styled.div`
+const NewDogContainer = styled.div`
   max-width: 1110px;
   margin: 0 auto;
   padding: 0 30px;

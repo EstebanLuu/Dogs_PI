@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Img from "../../assets/imagenDefault.jpg";
-import Curiosities from "../Curiosities/Curiosities";
+// import Curiosities from "../Curiosities/Curiosities";
 
 function DogCard({ dog }) {
-  const [curiosidad, setCuriosidad] = useState("");
+  // const { name } = dogs;
+  // const [curiosidad, setCuriosidad] = useState("");
 
-  const datoCurioso = () => {
-    const resultado = Math.floor(Math.random() * Curiosities.length);
-    return Curiosities[resultado]["value"];
-  };
+  // const datoCurioso = () => {
+  //   const resultado = Math.floor(Math.random() * Curiosities.length);
+  //   return Curiosities[resultado]["value"];
+  // };
 
-  const handleClick = () => {
-    setCuriosidad(datoCurioso());
-  };
+  // const handleClick = () => {
+  //   setCuriosidad(datoCurioso());
+  // };
 
   return (
     <DogCardContainer>
@@ -26,10 +27,10 @@ function DogCard({ dog }) {
         <div className="dog__detail__header">
           <div className="dog__detail__name">
             <h4 className="dog__detail__razaCR">Raza: </h4>
-            <h4 className="dog__detail__razaCN">Affenpinscher</h4>
+            <h4 className="dog__detail__razaCN">{dog?.name}</h4>
           </div>
           <div className="dog__detail__img-container">
-            <img className="dog__detail__img" src={Img} alt="" />
+            <img className="dog__detail__img" src={dog?.image} alt="" />
           </div>
         </div>
         <h4 className="dog__detail__stats">Check my stats</h4>
@@ -42,29 +43,36 @@ function DogCard({ dog }) {
 
           <div className="dog__detail__item">
             <div className="item-detail detail-title">ALTURA</div>
-            <div className="item-detail">40 Cm</div>
-            <div className="item-detail">20 cm</div>
+            <div className="item-detail">{dog?.height_min}</div>
+            <div className="item-detail">{dog?.height_max}</div>
           </div>
 
           <div className="dog__detail__item">
             <div className="item-detail detail-title">PESO</div>
-            <div className="item-detail">5 KG</div>
-            <div className="item-detail">10 kg</div>
+            <div className="item-detail">{dog?.weight_min}</div>
+            <div className="item-detail">{dog?.weight_max}</div>
           </div>
 
           <div className="dog__detail__item">
             <div className="item-detail detail-title">AÑOS DE VIDA</div>
-            <div className="item-detail">11 AÑOS</div>
-            <div className="item-detail">17 AÑOS</div>
+            <div className="item-detail">{dog?.life_span_min}</div>
+            <div className="item-detail">{dog?.life_span_max}</div>
           </div>
 
           <div className="dog__detail__item">
             <div className="item-detail-dif-1">TEMPERAMENTO</div>
-            <div className="item-detail-dif-2">
-              Wild, Hardworking, Dutiful Wild, Hardworking, DutifulWild,
-              Hardworking, Dutiful{" "}
-            </div>
+            <div className="item-detail-dif-2">{dog?.temperament}</div>
           </div>
+
+          <button className="card_view__more">
+            <a
+              target="_blank"
+              className="card_view__more__a"
+              href={`https://www.google.com/search?q=${dog?.name}`}
+            >
+              Ver más Información sobre de este can 🔎
+            </a>
+          </button>
         </div>
       </div>
     </DogCardContainer>
@@ -82,6 +90,7 @@ const DogCardContainer = styled.div`
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  
   .dog__detail__container {
     border-radius: 10px;
     text-align: center;
@@ -165,10 +174,12 @@ const DogCardContainer = styled.div`
     padding: 10px 0;
     padding-left: 5px;
     border: var(--border-color);
+    margin-bottom: 15px;
   }
 
   .item-detail-dif-2 {
     width: 67%;
+    margin-bottom: 15px;
     text-align: start;
     padding: 10px 0;
     padding-left: 5px;
@@ -187,11 +198,26 @@ const DogCardContainer = styled.div`
   }
 
   .deco-2 {
+    z-index: -1;
     animation: bounce2 0.5s alternate infinite ease-in;
   }
 
   .deco-3 {
+    z-index: -1;
     animation: bounce3 0.5s alternate infinite ease-in;
+  }
+
+  .card_view__more {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .card_view__more__a {
+    padding: 5px;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: var(--main-color);
   }
 
   @keyframes bounce2 {
@@ -276,54 +302,14 @@ const DogCardContainer = styled.div`
     .dog__detail__container {
       padding: 0;
     }
+    .item-detail-dif-2 {
+      border: transparent;
+    }
+    .item-detail-dif-1 {
+      border: transparent;
+    }
+    .dog__detail__item {
+      border: transparent;
+    }
   }
 `;
-
-/* <div className="left">
-<div className="profile">
-<div className="div_dog_profile">
-<img className="image_dog_profile" src={dog?.image} alt="dog" />
-</div>
-<div className="div_dog_name">
-<h2 className="name_dog">{dog?.name}</h2>
-<span className="sobre_dog">SOBRE MI</span>
-          </div>
-        </div>
-
-        <div className="table_container">
-          <table>
-            <tr>
-              <th className="encabezado_tabla">CARACTERISTICAS</th>
-              <th className="encabezado_tabla">MIN</th>
-              <th className="encabezado_tabla">MAX</th>
-            </tr>
-            <tr>
-              <td className="table_caracteristicas">ALTURA</td>
-              <td className="table_datos">{dog?.height_min}</td>
-              <td className="table_datos">{dog?.height_max} Cm</td>
-            </tr>
-            <tr>
-              <td className="table_caracteristicas">PESO</td>
-              <td className="table_datos">{dog?.weight_min}</td>
-              <td className="table_datos">{dog?.weight_max} Kg</td>
-            </tr>
-            <tr>
-              <td className="table_caracteristicas">AÑOS DE VIDA</td>
-              <td className="table_datos">{dog?.life_span_min}</td>
-              <td className="table_datos">{dog?.life_span_max} AÑOS</td>
-            </tr>
-            <tr>
-              <td className="table_caracteristicas table_temp">TEMPERAMENTO</td>
-              <td colSpan="2" className="table_datos temp">
-                {dog?.temperament}
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <div className="right">
-        <div className="div_banner">
-          <img className="banner" src={banner} alt="banner" />
-        </div>
-      </div> */
