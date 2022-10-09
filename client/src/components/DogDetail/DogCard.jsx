@@ -1,29 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Img from "../../assets/imagenDefault.jpg";
-// import Curiosities from "../Curiosities/Curiosities";
+import PerroCurioso from "../../assets/curiosidades.jpg";
+import Curiosities from "../Curiosities/Curiosities";
 
 function DogCard({ dog }) {
   // const { name } = dogs;
-  // const [curiosidad, setCuriosidad] = useState("");
 
-  // const datoCurioso = () => {
-  //   const resultado = Math.floor(Math.random() * Curiosities.length);
-  //   return Curiosities[resultado]["value"];
-  // };
+  const [curiosidad, setCuriosidad] = useState("");
 
-  // const handleClick = () => {
-  //   setCuriosidad(datoCurioso());
-  // };
+  const datoCurioso = () => {
+    const resultado = Math.floor(Math.random() * Curiosities.length);
+    return Curiosities[resultado]["value"];
+  };
+
+  const handleClick = () => {
+    setCuriosidad(datoCurioso());
+  };
+
+  useEffect(() => {
+    handleClick();
+  }, []);
 
   return (
     <DogCardContainer>
-      <div className="deco-container">
-        <h1 className="deco-1">Canine Details</h1>
-        <h1 className="deco-2">.</h1>
-        <h1 className="deco-3">🐕</h1>
-      </div>
       <div className="dog__detail__container">
+        <div className="deco-container">
+          <h1 className="deco-1">Canine Details</h1>
+          <h1 className="deco-2">.</h1>
+          <h1 className="deco-3">🐕</h1>
+        </div>
         <div className="dog__detail__header">
           <div className="dog__detail__name">
             <h4 className="dog__detail__razaCR">Raza: </h4>
@@ -75,6 +80,19 @@ function DogCard({ dog }) {
           </button>
         </div>
       </div>
+      <div className="canine__curiosities__container">
+        <div className="canine__curiosities__card">
+          <span className="title__curiosities">Sabias que.... 🤔</span>
+          <div className="perro__curiosities__container-img">
+            <img
+              className="perro__curiosities__img"
+              src={PerroCurioso}
+              alt=""
+            />
+          </div>
+          <p onChange={handleClick}>{curiosidad}.</p>
+        </div>
+      </div>
     </DogCardContainer>
   );
 }
@@ -83,14 +101,13 @@ export default DogCard;
 
 const DogCardContainer = styled.div`
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: 100%;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
-  
+
   .dog__detail__container {
     border-radius: 10px;
     text-align: center;
@@ -169,7 +186,7 @@ const DogCardContainer = styled.div`
   }
 
   .item-detail-dif-1 {
-    width: 33%;
+    width: 33.2%;
     text-align: start;
     padding: 10px 0;
     padding-left: 5px;
@@ -178,7 +195,7 @@ const DogCardContainer = styled.div`
   }
 
   .item-detail-dif-2 {
-    width: 67%;
+    width: 66.2%;
     margin-bottom: 15px;
     text-align: start;
     padding: 10px 0;
@@ -191,6 +208,7 @@ const DogCardContainer = styled.div`
     align-items: center;
     justify-content: center;
     color: var(--main-color);
+    margin-bottom: 20px;
   }
 
   .deco-1 {
@@ -210,6 +228,9 @@ const DogCardContainer = styled.div`
   .card_view__more {
     width: 100%;
     cursor: pointer;
+    background: var(--light-color);
+    border-radius: 10px;
+    border: var(--border-color);
   }
 
   .card_view__more__a {
@@ -238,23 +259,56 @@ const DogCardContainer = styled.div`
     }
   }
 
-  .dog__detail__decoration__curiosities {
-    width: 80%;
-    font-size: 15px;
+  .canine__curiosities__container {
+    width: 300px;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .canine__curiosities__card {
+    width: 250px;
+    min-height: 200px;
+    border: var(--border-color);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .perro__curiosities__container-img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .perro__curiosities__img {
+    width: 100%;
+    display: block;
+  }
+
+  .title__curiosities {
+    font-size: 20px;
+    display: block;
+    color: var(--main-color);
+    padding-bottom: 10px;
   }
 
   @media screen and (max-width: 992px) {
-  }
+    flex-direction: column;
+    align-items: center;
 
-  @media screen and (max-width: 768px) {
-    .dog__detail__characteristics {
+    .canine__curiosities__container {
+      margin-top: 20px;
+      width: 600px;
+    }
+
+    .canine__curiosities__card {
       width: 400px;
-      background: #fdfdfd;
-      border-radius: 10px;
+      padding: 20px;
     }
   }
 
-  @media screen and (max-width: 576px) {
+  @media screen and (max-width: 768px) {
     .dog__detail__header {
       flex-direction: column;
       min-height: 300px;
@@ -295,6 +349,16 @@ const DogCardContainer = styled.div`
     }
     .detail-title {
       width: 190px;
+    }
+
+    .canine__curiosities__container {
+      margin-top: 20px;
+      width: 350px;
+    }
+
+    .canine__curiosities__card {
+      width: 343px;
+      padding: 20px;
     }
   }
 

@@ -115,7 +115,7 @@ const NavbarContainer = styled.div`
     background: #fff;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     border-radius: 0;
     margin-bottom: 20px;
     border: var(--border-color);
@@ -182,6 +182,7 @@ const NavbarContainer = styled.div`
   .list-searchbar-responsive {
     top: -3000px;
     left: -3000px;
+    position: fixed;
   }
 
   .divSearchBar_Results {
@@ -231,8 +232,9 @@ const NavbarContainer = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: fixed;
       background: #fff;
+      z-index: 10000;
+      position: fixed;
     }
 
     .list-name {
@@ -247,7 +249,9 @@ const NavbarContainer = styled.div`
     }
 
     .menu-responsive {
-      color: white;
+      position: fixed;
+      right: 11px;
+      z-index: 100000;
     }
 
     .results {
@@ -266,6 +270,10 @@ const NavbarContainer = styled.div`
   @media screen and (max-width: 576px) {
     .title {
       display: none;
+    }
+
+    .search-bar {
+      border-top: transparent;
     }
     .responsive-title {
       display: initial;

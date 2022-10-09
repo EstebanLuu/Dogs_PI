@@ -26,23 +26,23 @@ function Filtros({ currentPage, setCurrentPage }) {
 
   return (
     <FiltrosContainer>
-      <div className="div_button_filter">
+      <div className="filtros__button__container">
         <button className="button_filter" onClick={handleClick}>
           <span className="icon_filtro">☰</span>
           Filtros
         </button>
       </div>
       {open && (
-        <div className="div_filtros_relative">
-          <div className="div_filtros">
-            <div className="div_fil">
+        <div className="filtros_container">
+          <div className="filtros__items">
+            <div className="filtro__container">
               <span className="filtro_name">Creado en</span>
               <FiltroCreado
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
               />
             </div>
-            <div className="div_fil">
+            <div className="filtro__container">
               <span className="filtro_name">Temperamentos</span>
               <FiltroTemperamento
                 currentPage={currentPage}
@@ -50,21 +50,27 @@ function Filtros({ currentPage, setCurrentPage }) {
               />
             </div>
 
-            <div className="div_ordernamiento">
-              <select className="select_ordernamiento" onChange={handleChange}>
-                <option className="option_name" value="name_A-Z">
-                  Nombre (A-Z)
-                </option>
-                <option className="option_name" value="name_Z-A">
-                  Nombre (Z-A)
-                </option>
-                <option className="option_name" value="peso_MAX-MIN">
-                  Peso (MIN-MAX)
-                </option>
-                <option className="option_name" value="peso_MIN-MAX">
-                  Peso (MAX-MIN)
-                </option>
-              </select>
+            <div className="filtro__container">
+              <div className="filtro__select">
+                <span className="filtro_name">Por Nombre</span>
+                <select
+                  className="select_ordernamiento"
+                  onChange={handleChange}
+                >
+                  <option className="option_name" value="name_A-Z">
+                    Nombre (A-Z)
+                  </option>
+                  <option className="option_name" value="name_Z-A">
+                    Nombre (Z-A)
+                  </option>
+                  <option className="option_name" value="peso_MAX-MIN">
+                    Peso (MIN-MAX)
+                  </option>
+                  <option className="option_name" value="peso_MIN-MAX">
+                    Peso (MAX-MIN)
+                  </option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -76,168 +82,92 @@ function Filtros({ currentPage, setCurrentPage }) {
 export default Filtros;
 
 const FiltrosContainer = styled.div`
-  margin: 0 var(--Margin-LR);
-  .div_filtro_ordernamineto {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  .filtros__button__container {
     width: 100%;
-  }
-
-  .div_ordernamiento {
     display: flex;
-    /* margin-bottom: 70px; */
-  }
-
-  .select_ordernamiento {
-    font-size: 15px;
-    color: var(--naranja);
-    cursor: pointer;
-    margin-top: 2px;
-    padding: 5px;
-    border: var(--border-color);
-    border-radius: 10px;
-  }
-  .select_ordernamiento:focus {
-    outline: none;
-  }
-  .option_name {
-    color: var(--azul-oscuro);
-  }
-
-  .div_button_filter {
-    display: flex;
+    align-items: center;
     justify-content: start;
-    padding: 0 120px;
-    margin: 25px 0;
   }
 
   .button_filter {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 20px;
-    font-weight: 500;
-    padding: 7px 12px 5px 10px;
-    border-radius: 10px;
-    color: var(--gris-claro);
-    border: 1px solid var(--gris-placeholder);
-    background-color: var(--blanco);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .button_filter:hover {
-    color: var(--gris-oscuro);
-    border-color: var(--gris-oscuro);
-  }
-
-  .icon_filtro {
-    width: 25px;
-  }
-
-  .div_filtros_relative {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .div_filtros {
-    position: absolute;
-    display: flex;
-    width: 70%;
-    gap: 20px;
-    padding: 10px;
-    top: -82px;
-    left: 250px;
-    border-radius: 10px;
+    padding: 3px;
+    background-color: #fff;
+    color: var(--black-color);
     border: var(--border-color);
-    background: var(--light-color);
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    margin-left: 70px;
   }
 
-  /* .div_fil {
-    font-weight: 600;
+  .filtro__container {
+    border-radius: 10px;
+    padding: 10px;
+    border: var(--border-color);
+  }
+
+  .filtros__items {
+    padding: 10px;
+    width: 100%;
+    margin: 0;
     display: flex;
+    align-items: center;
+    border-radius: 10px;
+    justify-content: space-around;
+  }
+
+  .filtro__select {
+    display: flex;
+    align-items: start;
+    justify-content: center;
     flex-direction: column;
-    gap: 10px;
-  } */
+    /* border: var(--border-color);
+    border-radius: 10px;
+    padding: 5px; */
+  }
+
+  .select_ordernamiento {
+    border-radius: 5px;
+    padding: 3px;
+    cursor: pointer;
+  }
+
+  .option_name {
+    color: #c0c0c0;
+  }
 
   .filtro_name {
-    color: var(--gris-oscuro);
+    color: var(--main-color);
   }
 
-  @media screen and (max-width: 574px) {
-    .div_filtros_relative {
-      position: relative;
-      right: 0px;
-    }
-
-    .div_filtros {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      background-color: var(--blanco);
-      gap: 50px;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid var(--gris-placeholder);
-      margin-top: 10px;
-    }
-  }
-
-  @media screen and (max-width: 574px) {
-    .home_options {
+  @media screen and (max-width: 576px) {
+    .filtros__items {
       flex-direction: column;
     }
-    .div_filtro_ordernamineto {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+    .filtro__container {
+      margin-bottom: 10px;
+      width: 50%;
+      text-align: center;
+    }
+    .filtro__select {
       align-items: center;
-      max-width: 514px;
     }
-  }
-
-  @media screen and (max-width: 419px) {
-    .home {
-      max-width: 1110px;
-      margin: 0 auto;
-      padding: 0 15px;
+    .filtros__button__container {
+      justify-content: center;
     }
-    .div_ordernamiento {
-      display: flex;
-      flex-direction: column;
-    }
-    .ordenar_text {
-      font-size: 15px;
-    }
-    .select_ordernamiento {
-      font-size: 13px;
-    }
-  }
-
-  @media screen and (max-width: 375px) {
     .button_filter {
-      gap: 5px;
-      font-size: 16px;
-      padding: 7px 10px 5px 8px;
-      border-radius: 8px;
+      margin-left: 0;
     }
+  }
 
-    .button_filter:hover {
-      color: var(--gris-oscuro);
-      border-color: var(--gris-oscuro);
-    }
-
-    .icon_filtro {
-      width: 20px;
-    }
-
-    .div_filtros_relative {
-      position: relative;
-      left: 0px;
+  @media screen and (max-width: 350px) {
+    .filtro__container {
+      margin-bottom: 10px;
+      width: 100%;
+      text-align: center;
     }
   }
 `;

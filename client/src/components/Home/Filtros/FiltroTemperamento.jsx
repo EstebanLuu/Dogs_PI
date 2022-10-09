@@ -19,15 +19,17 @@ function FiltroTemperamento({ currentPage, setCurrentPage }) {
 
   return (
     <div>
-      <select onChange={handleFilter}>
+      <select className="select_ordernamiento" onChange={handleFilter}>
         <option selected disabled>
           selecciona uno
         </option>
-        <option value="All">All Temperaments</option>
+        <option className="option_name" value="All">
+          All Temperaments
+        </option>
         {temp &&
           temp.map((t, i) => {
             return (
-              <option value={t.name} key={i}>
+              <option className="option_name" value={t.name} key={i}>
                 {t.name}
               </option>
             );

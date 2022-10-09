@@ -13,13 +13,19 @@ function FiltroCreado({ currentPage, setCurrentPage }) {
 
   return (
     <div>
-      <select onChange={handleSelect}>
+      <select className="select_ordernamiento" onChange={handleSelect}>
         <option selected disabled>
           selecciona uno
         </option>
-        <option value="All">Todos</option>
-        <option value="Api">API</option>
-        <option value="creados">Base de datos</option>
+        <option className="option_name" value="All">
+          Todos
+        </option>
+        <option className="option_name" value="Api">
+          API
+        </option>
+        <option className="option_name" value="creados">
+          Base de datos
+        </option>
       </select>
     </div>
   );

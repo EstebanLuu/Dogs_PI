@@ -45,36 +45,9 @@ function Pagination({
     }
   }
 
-  function handlePrevUltimate() {
-    if (currentPage !== 1) {
-      setCurrentPage((currentPage = 1));
-    }
-    if (currentPage === 1 || currentPage > 1) {
-      setMaxPageNumberLimit(5);
-      setMinPageNumberLimit(0);
-    }
-  }
-
-  function handleNextUltimate() {
-    if (currentPage !== pageNumbers.length) {
-      setCurrentPage((currentPage = 22));
-    }
-    if (currentPage + 1 > maxPageNumberLimit) {
-      setMaxPageNumberLimit(22);
-      setMinPageNumberLimit(20);
-    }
-  }
-
   return (
     <PaginationContainer>
       <ul className="pagination">
-        <button
-          className={`${currentPage !== 1 ? "page__PN" : "arrow__DN"} `}
-          onClick={handlePrevUltimate}
-        >
-          «
-        </button>
-
         <button
           className={`${currentPage !== 1 ? "page__PN" : "arrow__DN"} `}
           onClick={handlePrev}
@@ -103,13 +76,6 @@ function Pagination({
           onClick={handleNext}
         >
           ›
-        </button>
-
-        <button
-          className={`${currentPage !== 22 ? "page__PN" : "arrow__DN"} `}
-          onClick={handleNextUltimate}
-        >
-          »
         </button>
       </ul>
     </PaginationContainer>
