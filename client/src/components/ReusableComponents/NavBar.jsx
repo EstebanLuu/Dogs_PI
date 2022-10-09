@@ -275,6 +275,7 @@ const NavbarContainer = styled.div`
     .search-bar {
       border-top: transparent;
     }
+    
     .responsive-title {
       display: initial;
       display: flex;

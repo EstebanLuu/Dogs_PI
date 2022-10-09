@@ -57,16 +57,16 @@ function Filtros({ currentPage, setCurrentPage }) {
                   className="select_ordernamiento"
                   onChange={handleChange}
                 >
-                  <option className="option_name" value="name_A-Z">
+                  <option className="option__name" value="name_A-Z">
                     Nombre (A-Z)
                   </option>
-                  <option className="option_name" value="name_Z-A">
+                  <option className="option__name" value="name_Z-A">
                     Nombre (Z-A)
                   </option>
-                  <option className="option_name" value="peso_MAX-MIN">
+                  <option className="option__name" value="peso_MAX-MIN">
                     Peso (MIN-MAX)
                   </option>
-                  <option className="option_name" value="peso_MIN-MAX">
+                  <option className="option__name" value="peso_MIN-MAX">
                     Peso (MAX-MIN)
                   </option>
                 </select>
@@ -101,6 +101,9 @@ const FiltrosContainer = styled.div`
     outline: none;
     cursor: pointer;
     margin-left: 70px;
+    &:hover {
+      border: var(--border-color);
+    }
   }
 
   .filtro__container {
@@ -124,23 +127,25 @@ const FiltrosContainer = styled.div`
     align-items: start;
     justify-content: center;
     flex-direction: column;
-    /* border: var(--border-color);
-    border-radius: 10px;
-    padding: 5px; */
   }
 
   .select_ordernamiento {
     border-radius: 5px;
     padding: 3px;
     cursor: pointer;
+    outline: none;
   }
 
-  .option_name {
-    color: #c0c0c0;
+  .option__name {
+    color: #dabbbb;
+    cursor: pointer;
+    background: #fff;
+    display: block;
   }
 
   .filtro_name {
     color: var(--main-color);
+    background: #fff;
   }
 
   @media screen and (max-width: 576px) {

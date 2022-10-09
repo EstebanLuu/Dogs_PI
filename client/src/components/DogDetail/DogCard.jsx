@@ -90,7 +90,7 @@ function DogCard({ dog }) {
               alt=""
             />
           </div>
-          <p onChange={handleClick}>{curiosidad}.</p>
+          <p>{curiosidad}.</p>
         </div>
       </div>
     </DogCardContainer>

@@ -43,7 +43,9 @@ const LandingPage = () => {
             </div>
           </Link>
           <Link className="link" to="/home">
-            <div className="landing__carrousel__card">Todas las razas</div>
+            <div className="landing__carrousel__card">
+              Conoce datos curiosos
+            </div>
           </Link>
 
           <Link className="link" to="/home">

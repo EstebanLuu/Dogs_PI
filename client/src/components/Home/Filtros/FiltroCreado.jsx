@@ -17,13 +17,13 @@ function FiltroCreado({ currentPage, setCurrentPage }) {
         <option selected disabled>
           selecciona uno
         </option>
-        <option className="option_name" value="All">
+        <option className="option__name" value="All">
           Todos
         </option>
-        <option className="option_name" value="Api">
+        <option className="option__name" value="Api">
           API
         </option>
-        <option className="option_name" value="creados">
+        <option className="option__name" value="creados">
           Base de datos
         </option>
       </select>

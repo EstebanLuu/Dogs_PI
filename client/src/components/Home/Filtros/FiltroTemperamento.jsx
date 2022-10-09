@@ -23,13 +23,13 @@ function FiltroTemperamento({ currentPage, setCurrentPage }) {
         <option selected disabled>
           selecciona uno
         </option>
-        <option className="option_name" value="All">
+        <option className="option__name" value="All">
           All Temperaments
         </option>
         {temp &&
           temp.map((t, i) => {
             return (
-              <option className="option_name" value={t.name} key={i}>
+              <option className="option__name" value={t.name} key={i}>
                 {t.name}
               </option>
             );
