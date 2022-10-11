@@ -17,6 +17,8 @@ router.get("/", async (req, res, next) => {
     const validandoDogsApi = await formateoApi(dogApi);
     const validandoDogsDb = await formateoDb(dogDb);
 
+    // Doy formato a los datos de la API y la DB
+
     const allDog = await validandoDogsApi.concat(validandoDogsDb);
 
     res.json(allDog);
@@ -29,7 +31,7 @@ router.post("/", async (req, res) => {
   const { name, height_min, height_max, weight_min, weight_max, temperament } =
     req.body;
 
-    // datos obligatorios del formulario
+  // datos obligatorios del formulario
 
   if (!name || !height_min || !height_max || !weight_min || !weight_max) {
     return res.status(400).send({ msg: "Falta enviar datos obligatorios" });
@@ -41,7 +43,7 @@ router.post("/", async (req, res) => {
       where: { id: temperament },
     });
 
-    await dog.addTemperament(temperament);
+    await dog.addTemperament(tempDb);
 
     return res.status(201).send({ msg: "Perro creado correctamente" });
   } catch (error) {
@@ -51,9 +53,11 @@ router.post("/", async (req, res) => {
 
 router.get("/:idRaza", async (req, res, next) => {
   const { idRaza } = req.params;
+
   if (!idRaza) {
     return res.status(400).send({ msg: "Falta enviar datos obligatorios" });
   }
+
   try {
     const dogApi = (await axios.get(`${API}?api_key=${API_KEY}`)).data;
     const dogDb = await Dog.findAll({ include: Temperament });
@@ -63,7 +67,7 @@ router.get("/:idRaza", async (req, res, next) => {
 
     const allDog = await validandoDogsDb.concat(validandoDogsApi);
 
-    const dog = allDog.filter((d) => d.id == idRaza);
+    const dog = allDog.filter((dog) => dog.id == idRaza);
 
     return res.status(200).send(dog);
   } catch (error) {

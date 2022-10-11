@@ -7,8 +7,10 @@ const { Op } = require("sequelize");
 const router = Router();
 
 router.get("/", async (req, res, next) => {
-  // Guardo el nombre por si el usuario busca algo en particular
+  // guardamos lo que pasamos por req.query
+
   const { name } = req.query;
+
   try {
     const dogApi = (await axios.get(`${API}?api_key=${API_KEY}`)).data;
     const dogDb = await Dog.findAll({

@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import NavBar from "../ReusableComponents/NavBar";
 import Grid from "./Grid";
 import Footer from "../ReusableComponents/Footer";

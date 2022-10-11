@@ -15,6 +15,8 @@ router.get("/", async (req, res, next) => {
       .join()
       .split(",");
 
+      // Uno todos los temperamentos y los separo en varios strings
+
     let resultado = uniendo.reduce((a, e) => {
       if (!a.find((d) => d == e)) a.push(e);
       return a;
@@ -29,6 +31,7 @@ router.get("/", async (req, res, next) => {
     if (allTemps.length === 0) {
       await Temperament.bulkCreate(resultado);
     }
+    
     const temper = await Temperament.findAll();
 
     res.send(temper);

@@ -1,8 +1,5 @@
 module.exports = {
   formateoDb: async function (dogDb) {
-
-    //Completo el objeto con los datos que quiero
-
     const dbFormateo = dogDb.map((dog) => {
       return {
         id: dog.id,
@@ -19,14 +16,18 @@ module.exports = {
       };
     });
 
+    // Formateo BD para tener datos limpios
+
     const validandoDogsDb = dbFormateo.map((dog) => {
       if (!dog.image) {
         dog.image =
-          "https://www.postable.com/blog/wp-content/uploads/2018/06/puppy2.jpg";
+          "https://img.freepik.com/fotos-premium/teckel-perro-salchicha-mira-adelante-aislado-sobre-fondo-blanco_104627-2781.jpg?w=2000";
       }
       if (Array.isArray(dog.temperament)) {
         dog.temperament = dog.temperament.map((tem) => tem.name);
         dog.temperament = dog.temperament.join(", ");
+
+        // Pasamos los temperamentos de los dogs a string
       }
       return dog;
     });
@@ -49,64 +50,66 @@ module.exports = {
       };
     });
 
-    const validandoDogsApi = await apiFormateo.map((d) => {
+    // Formateo API para tener datos limpios
+
+    const validandoDogsApi = await apiFormateo.map((dog) => {
       if (
-        !d.weight_min ||
-        d.weight_min === "Na" ||
-        d.weight_min === "NaN" ||
-        d.weight_min === "aN"
+        !dog.weight_min ||
+        dog.weight_min === "Na" ||
+        dog.weight_min === "NaN" ||
+        dog.weight_min === "aN"
       ) {
         if (
-          !d.weight_max ||
-          d.weight_max === "Na" ||
-          d.weight_max === "NaN" ||
-          d.weight_max === "aN"
+          !dog.weight_max ||
+          dog.weight_max === "Na" ||
+          dog.weight_max === "NaN" ||
+          dog.weight_max === "aN"
         ) {
-          d.weight_min = "8";
+          dog.weight_min = "8";
         } else {
-          d.weight_min = (d.weight_max - 2).toString();
+          dog.weight_min = (dog.weight_max - 2).toString();
         }
       }
 
       if (
-        !d.weight_max ||
-        d.weight_max === "Na" ||
-        d.weight_max === "NaN" ||
-        d.weight_max === "aN"
+        !dog.weight_max ||
+        dog.weight_max === "Na" ||
+        dog.weight_max === "NaN" ||
+        dog.weight_max === "aN"
       ) {
         if (
-          !d.weight_min ||
-          d.weight_min === "Na" ||
-          d.weight_min === "NaN" ||
-          d.weight_min === "aN"
+          !dog.weight_min ||
+          dog.weight_min === "Na" ||
+          dog.weight_min === "NaN" ||
+          dog.weight_min === "aN"
         ) {
-          d.weight_max = "12";
+          dog.weight_max = "12";
         } else {
-          d.weight_max = (parseInt(d.weight_min) + 7).toString();
+          dog.weight_max = (parseInt(dog.weight_min) + 7).toString();
         }
       }
 
-      if (!d.height_max) {
-        if (!d.height_min) {
-          d.height_max = "42";
+      if (!dog.height_max) {
+        if (!dog.height_min) {
+          dog.height_max = "42";
         } else {
-          d.height_max = (parseInt(d.height_min) + 3).toString();
+          dog.height_max = (parseInt(dog.height_min) + 3).toString();
         }
       }
 
-      if (!d.life_span_max) {
-        if (!d.life_span_min) {
-          d.life_span_max = "19";
+      if (!dog.life_span_max) {
+        if (!dog.life_span_min) {
+          dog.life_span_max = "19";
         } else {
-          d.life_span_max = (parseInt(d.life_span_min) + 2).toString();
+          dog.life_span_max = (parseInt(dog.life_span_min) + 3).toString();
         }
       }
 
-      if (!d.temperament) {
-        d.temperament = "Stubborn, Active, Happy, Dutiful, Confident";
+      if (!dog.temperament) {
+        dog.temperament = "Stubborn, Active, Happy, Dutiful, Confident";
       }
 
-      return d;
+      return dog;
     });
     return validandoDogsApi;
   },

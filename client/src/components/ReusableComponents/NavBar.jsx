@@ -189,6 +189,7 @@ const NavbarContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     width: 200px;
+    z-index: 1000;
   }
 
   .div_nameResult {
