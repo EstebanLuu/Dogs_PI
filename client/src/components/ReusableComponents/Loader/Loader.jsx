@@ -1,15 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import NoSeEncuentra from "./NoSeEncuentra/NoSeEncuentra";
 
 function Loader() {
   return (
-    <LoaderContainer>
-      <button className="loader__button">
-        <div className="loader__round">
-          <div className="loader-circle" />
-        </div>
-      </button>
-    </LoaderContainer>
+    <>
+      <LoaderContainer>
+        <button className="loader__button">
+          <div className="loader__round">
+            <div className="loader-circle" />
+          </div>
+        </button>
+        <NoSeEncuentra />
+      </LoaderContainer>
+    </>
   );
 }
 export default Loader;
@@ -17,7 +21,8 @@ export default Loader;
 const LoaderContainer = styled.div`
   display: block;
   width: 100%;
-  height: 80vh;
+  height: 200px;
+  position: relative;
 
   .loader__button {
     display: block;
@@ -57,8 +62,8 @@ const LoaderContainer = styled.div`
     position: relative;
     border-top: 3px solid rgba(0, 0, 0, 0);
     border-right: 3px solid rgba(0, 0, 0, 0);
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;
+    border-bottom: 2px solid var(--main-color);
+    border-left: 2px solid var(--main-color);
     font-size: 5px;
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
@@ -76,6 +81,26 @@ const LoaderContainer = styled.div`
     100% {
       -webkit-transform: rotate(360deg);
       transform: rotate(360deg);
+    }
+  }
+
+  .NoSeEncuentra__container {
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .NoSeEncuentra__container__span {
+    color: var(--main-color);
+  }
+
+  @media screen and (max-width: 576px) {
+    width: 100%;
+    height: 250px;
+
+    .NoSeEncuentra__container {
+      position: absolute;
+      bottom: 5px;
+      margin-bottom: 10px;
     }
   }
 `;

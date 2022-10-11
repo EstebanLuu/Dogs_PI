@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getDogs } from "../../Redux/actions/index";
 import Card from "./Card";
 import { Link } from "react-router-dom";
-import Loader from "./Loader.jsx";
+import Loader from "../ReusableComponents/Loader/Loader";
 import Pagination from "./Pagination";
 import styled from "styled-components";
 
@@ -45,6 +45,7 @@ function AllCards({
   return (
     <CardsContainer className="AllCards_component">
       <div className="AllCards">{dogs.length !== 0 ? cards() : <Loader />}</div>
+
       <Pagination
         dogsPerPage={dogsPerPage}
         totalPosts={dogs.length}

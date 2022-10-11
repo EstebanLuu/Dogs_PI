@@ -8,12 +8,14 @@ const { formateoDb, formateoApi } = require("../controllers/controllers");
 const router = Router();
 
 router.get("/", async (req, res, next) => {
+  // Traigo todos los perros de la api y la base de datos
+
   try {
     const dogApi = (await axios.get(`${API}?api_key=${API_KEY}`)).data;
     const dogDb = await Dog.findAll({ include: Temperament });
 
-    const validandoDogsDb = await formateoDb(dogDb);
     const validandoDogsApi = await formateoApi(dogApi);
+    const validandoDogsDb = await formateoDb(dogDb);
 
     const allDog = await validandoDogsApi.concat(validandoDogsDb);
 
@@ -26,6 +28,9 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res) => {
   const { name, height_min, height_max, weight_min, weight_max, temperament } =
     req.body;
+
+    // datos obligatorios del formulario
+
   if (!name || !height_min || !height_max || !weight_min || !weight_max) {
     return res.status(400).send({ msg: "Falta enviar datos obligatorios" });
   }

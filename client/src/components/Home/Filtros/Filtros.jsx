@@ -32,9 +32,12 @@ function Filtros({ currentPage, setCurrentPage }) {
           Filtros
         </button>
       </div>
+
       {open && (
         <div className="filtros_container">
           <div className="filtros__items">
+
+
             <div className="filtro__container">
               <span className="filtro_name">Creado en</span>
               <FiltroCreado
@@ -42,6 +45,8 @@ function Filtros({ currentPage, setCurrentPage }) {
                 setCurrentPage={setCurrentPage}
               />
             </div>
+
+
             <div className="filtro__container">
               <span className="filtro_name">Temperamentos</span>
               <FiltroTemperamento
@@ -49,6 +54,7 @@ function Filtros({ currentPage, setCurrentPage }) {
                 setCurrentPage={setCurrentPage}
               />
             </div>
+
 
             <div className="filtro__container">
               <div className="filtro__select">

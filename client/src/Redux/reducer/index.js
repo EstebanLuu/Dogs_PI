@@ -27,20 +27,24 @@ const rootReducer = (state = initialState, { type, payload }) => {
         allDogsFilter: payload,
         dogsHome: payload,
       };
+
     case GET_DETAILS:
       return {
         ...state,
         details: payload,
       };
+
     case DOG_POST:
       return {
         ...state,
       };
+
     case GET_TEMPERAMENT:
       return {
         ...state,
         temperaments: payload,
       };
+
     case FILTER_DOG:
       const allDogs = state.allDogsFilter;
       const filtro =
@@ -51,21 +55,24 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         dogs: filtro,
       };
+
     case FILTER_CREATED:
       const allDogsFilter = state.allDogsFilter;
       const createFilter =
         payload === "creados"
-          ? allDogsFilter.filter((d) => d.creadoEnDB)
-          : allDogsFilter.filter((d) => !d.creadoEnDB);
+          ? allDogsFilter.filter((dogs) => dogs.creadoEnDB, console.log("dogs"))
+          : allDogsFilter.filter((dogs) => !dogs.creadoEnDB);
       return {
         ...state,
         dogs: payload === "All" ? allDogsFilter : createFilter,
       };
+
     case DOG_WANTED:
       return {
         ...state,
         dogsHome: payload,
       };
+
     case ORDER_BY_NAME:
       const orderDogsName =
         payload === "name_A-Z"

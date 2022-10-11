@@ -14,12 +14,14 @@ function Pagination({
 
   const pageNumbers = [];
 
+  let totalPerros = totalPosts / 8;
+
   for (let i = 1; i <= Math.ceil(totalPosts / dogsPerPage); i++) {
     pageNumbers.push(i);
   }
 
   function handleNext() {
-    if (currentPage !== pageNumbers.length) {
+    if (currentPage !== totalPerros) {
       setCurrentPage(currentPage + 1);
     }
 
@@ -72,7 +74,7 @@ function Pagination({
             }
           })}
         <button
-          className={`${currentPage !== 22 ? "page__PN" : "arrow__DN"} `}
+          className={`${currentPage < totalPerros ? "page__PN" : "arrow__DN"} `}
           onClick={handleNext}
         >
           ›

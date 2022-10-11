@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PerroCurioso from "../../assets/curiosidades.jpg";
 import Curiosities from "../Curiosities/Curiosities";
+import Loader from "../ReusableComponents/Loader/Loader";
 
 function DogCard({ dog }) {
   // const { name } = dogs;
@@ -229,7 +230,7 @@ const DogCardContainer = styled.div`
     width: 100%;
     cursor: pointer;
     background: var(--light-color);
-    border-radius: 10px;
+    border-radius: 5px;
     border: var(--border-color);
   }
 

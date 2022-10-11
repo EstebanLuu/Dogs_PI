@@ -74,7 +74,7 @@ const LandingContainer = styled.div`
     top: 0;
     margin-bottom: 20px;
     height: 300px;
-    border-radius: 0 0 10px 300px;
+    border-radius: 0 0 5px 300px;
   }
 
   .landing__text {

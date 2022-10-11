@@ -40,7 +40,7 @@ function NavBar() {
         </Link>
         <div
           className={`list-searchbar ${
-            menu ? "list-searchbar-responsive" : ""
+            menu ? "list-searchbar-responsive" : "list-searchbar"
           }`}
           onClick={handleClickMenu}
         >
@@ -119,6 +119,7 @@ const NavbarContainer = styled.div`
     border-radius: 0;
     margin-bottom: 20px;
     border: var(--border-color);
+    position: initial;
   }
 
   .title {
@@ -130,8 +131,10 @@ const NavbarContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: transparent;
+    background-color: #fff;
     width: 400px;
+    color: black;
+    position: initial;
   }
 
   .search-div {
@@ -179,12 +182,6 @@ const NavbarContainer = styled.div`
     display: none;
   }
 
-  .list-searchbar-responsive {
-    top: -3000px;
-    left: -3000px;
-    position: fixed;
-  }
-
   .divSearchBar_Results {
     position: absolute;
     text-align: center;
@@ -222,7 +219,6 @@ const NavbarContainer = styled.div`
     }
 
     .list-searchbar-responsive {
-      background: #e6e6e6;
       position: initial;
       width: 100%;
       height: 100vh;
@@ -275,7 +271,7 @@ const NavbarContainer = styled.div`
     .search-bar {
       border-top: transparent;
     }
-    
+
     .responsive-title {
       display: initial;
       display: flex;
