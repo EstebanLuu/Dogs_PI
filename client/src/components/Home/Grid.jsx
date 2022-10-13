@@ -15,7 +15,7 @@ function AllCards({
   indexOfLastDog,
 }) {
   const dispatch = useDispatch();
-  const dogs = useSelector((state) => state.dogs);
+  const dogs = useSelector((state) => state.allDogsFilter);
 
   useEffect(() => {
     dispatch(getDogs());

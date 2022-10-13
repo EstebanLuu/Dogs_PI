@@ -16,6 +16,7 @@ const initialState = {
   details: [],
   temperaments: [],
   dogsHome: [],
+  filtradosDB: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -46,26 +47,49 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case FILTER_DOG:
-      const allDogs = state.allDogsFilter;
-      const filtro =
-        payload === "All"
-          ? allDogs
-          : allDogs.filter((e) => e.temperament.includes(payload));
-      return {
-        ...state,
-        dogs: filtro,
-      };
+      const allDogs = state.dogs;
+      const allDogsFil = state.allDogsFilter;
+      const filtradosDB = state.filtradosDB;
+      // const allDogsFil = state.dogs;
+      if (payload === "All") {
+        const filltroDogs = filtradosDB;
+        return {
+          ...state,
+          allDogsFilter: filltroDogs,
+        };
+      } else {
+        const filltroDogs = filtradosDB.filter((e) =>
+          e.temperament.includes(payload)
+        );
+        return {
+          ...state,
+          allDogsFilter: filltroDogs,
+        };
+      }
 
     case FILTER_CREATED:
-      const allDogsFilter = state.allDogsFilter;
-      const createFilter =
-        payload === "creados"
-          ? allDogsFilter.filter((dogs) => dogs.creadoEnDB, console.log("dogs"))
-          : allDogsFilter.filter((dogs) => !dogs.creadoEnDB);
-      return {
-        ...state,
-        dogs: payload === "All" ? allDogsFilter : createFilter,
-      };
+      const allDogsFilter = state.dogs;
+
+      if (payload === "creados") {
+        const filterDog1 = allDogsFilter.filter((dogs) => dogs.creadoEnDB);
+        return {
+          ...state,
+          allDogsFilter: filterDog1,
+          filtradosDB: filterDog1,
+        };
+      } else if (payload === "Api") {
+        const filterDog = allDogsFilter.filter((dogs) => !dogs.creadoEnDB);
+        return {
+          ...state,
+          allDogsFilter: filterDog,
+          filtradosDB: filterDog,
+        };
+      } else
+        return {
+          ...state,
+          allDogsFilter: allDogsFilter,
+          filtradosDB: allDogsFilter,
+        };
 
     case DOG_WANTED:
       return {
@@ -76,7 +100,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ORDER_BY_NAME:
       const orderDogsName =
         payload === "name_A-Z"
-          ? state.dogs.slice().sort(function (a, b) {
+          ? state.allDogsFilter.slice().sort(function (a, b) {
               if (a.name.toLowerCase() < b.name.toLowerCase()) {
                 return -1;
               }
@@ -85,7 +109,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
               }
               return 0;
             })
-          : state.dogs.slice().sort(function (a, b) {
+          : state.allDogsFilter.slice().sort(function (a, b) {
               if (a.name.toLowerCase() > b.name.toLowerCase()) {
                 return -1;
               }
@@ -96,12 +120,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
             });
       return {
         ...state,
-        dogs: orderDogsName,
+        allDogsFilter: orderDogsName,
       };
     case ORDER_BY_WEIGHT:
       const orderDogsKg =
         payload === "peso_MAX-MIN"
-          ? state.dogs.slice().sort(function (a, b) {
+          ? state.allDogsFilter.slice().sort(function (a, b) {
               if (parseInt(a.weight_min) < parseInt(b.weight_min)) {
                 return -1;
               }
@@ -110,7 +134,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
               }
               return 0;
             })
-          : state.dogs.slice().sort(function (a, b) {
+          : state.allDogsFilter.slice().sort(function (a, b) {
               if (parseInt(a.weight_min) > parseInt(b.weight_min)) {
                 return -1;
               }
@@ -121,7 +145,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
             });
       return {
         ...state,
-        dogs: orderDogsKg,
+        allDogsFilter: orderDogsKg,
       };
 
     default:
