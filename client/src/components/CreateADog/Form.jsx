@@ -5,66 +5,68 @@ import { getTemperament } from "../../Redux/actions/index";
 import styled from "styled-components";
 
 function validar(input) {
-  //name
   let errors = {};
+
+  //name
+
   if (!input.name) {
-    errors.name = "debes ponerle un nombre";
-  } else if (!/[A-Z]+$/i.test(input.name)) {
-    errors.name = "solo puede contener letras";
-  } else if (parseInt(input.name.length) >= 25) {
-    errors.name = "debe contener menos de 25 caracteres";
+    errors.name = "Debes ponerle un nombre";
+  } else if (!/^[A-Z]+$/i.test(input.name)) {
+    errors.name = "Solo puede contener letras";
+  } else if (input.name.length >= 25) {
+    errors.name = "Debe contener menos de 25 caracteres";
   }
-  // /^[A-Z]+$/i
 
   //height
+
   if (!input.height_max) {
-    errors.height_max = "altura max requerida";
-  } else if (parseInt(input.height_max) > 85) {
-    errors.height_max = "debe ser menor a 85 CM";
+    errors.height_max = "Altura max requerida";
+  } else if (input.height_max > 85) {
+    errors.height_max = "Debe ser menor a 85 CM";
   } else if (!/^[0-9]+$/.test(input.height_max)) {
-    errors.height_max = "solo puede contener numeros";
+    errors.height_max = "Solo puede contener numeros";
   } else if (parseInt(input.height_max) < 10) {
     errors.height_max = "El perro debe tener más de 10 cm";
   }
 
-  //agregar a los otros inputs
-
   if (!input.height_min) {
-    errors.height_min = "altura min requerida";
+    errors.height_min = "Altura min requerida";
   } else if (parseInt(input.height_min) >= parseInt(input.height_max)) {
-    errors.height_min = "debe ser menor al max";
+    errors.height_min = "Debe ser menor al max";
   } else if (!/^[0-9]+$/.test(input.height_min)) {
-    errors.height_min = "solo puede contener numeros";
+    errors.height_min = "Solo puede contener numeros";
   } else if (parseInt(input.height_min) < 10) {
     errors.height_min = "El perro debe tener más de 10 cm";
   }
 
   //weight
+
   if (!input.weight_max) {
-    errors.weight_max = "peso max requerido";
+    errors.weight_max = "Peso max requerido";
   } else if (parseInt(input.weight_max) > 90) {
-    errors.weight_max = "debe ser menor a 90 KG";
+    errors.weight_max = "Debe ser menor a 90 KG";
   } else if (!/^[0-9]+$/.test(input.weight_max)) {
-    errors.weight_max = "solo puede contener numeros";
-  } else if (parseInt(input.weight_max) <= 1) {
-    errors.weight_max = "debe ser mayor a 1 KG";
+    errors.weight_max = "Solo puede contener numeros";
+  } else if (parseInt(input.weight_max) < 1) {
+    errors.weight_max = "Debe ser mayor a 0 KG";
   }
 
   if (!input.weight_min) {
-    errors.weight_min = "peso min requerido";
+    errors.weight_min = "Peso min requerido";
   } else if (parseInt(input.weight_min) >= parseInt(input.weight_max)) {
-    errors.weight_min = "debe ser menor al max";
+    errors.weight_min = "Debe ser menor al max";
   } else if (!/^[0-9]+$/.test(input.weight_min)) {
-    errors.weight_min = "solo puede contener numeros";
+    errors.weight_min = "Solo puede contener numeros";
   } else if (parseInt(input.weight_min) <= 1) {
-    errors.weight_min = "debe ser mayor a 1 KG";
+    errors.weight_min = "Debe ser mayor a 1 KG";
   }
 
   //life_span
+
   if (parseInt(input.life_span_max) > 20) {
     errors.life_span_max = "Debe ser menor a 20 Años";
   } else if (!/^[0-9]+$/.test(input.life_span_max)) {
-    errors.life_span_max = "solo puede contener numeros";
+    errors.life_span_max = "Solo puede contener numeros";
   } else if (parseInt(input.life_span_max) < 6) {
     errors.life_span_max = "Debe ser mayor a 5 Años";
   }
@@ -72,7 +74,7 @@ function validar(input) {
   if (parseInt(input.life_span_min) < 6) {
     errors.life_span_min = "Debe ser mayor a 5 Años";
   } else if (!/^[0-9]+$/.test(input.life_span_min)) {
-    errors.life_span_min = "solo puede contener numeros";
+    errors.life_span_min = "Solo puede contener numeros";
   }
 
   return errors;
@@ -103,8 +105,6 @@ function Form() {
 
   const [selectNameState, setSelectNameState] = useState([]);
 
-  // console.log("input form :",input.temperament)
-
   function handleChange(e) {
     setInput({
       ...input,
@@ -116,6 +116,7 @@ function Form() {
         [e.target.name]: e.target.value,
       })
     );
+    return errors.name;
   }
 
   function handleSelect(e) {
@@ -167,10 +168,14 @@ function Form() {
   function handleDelete(e) {
     setInput({
       ...input,
-      temperament: input.temperament.filter((t) => t !== e.target.value),
+      temperament: input.temperament.filter(
+        (temperamento) => temperamento !== e.target.value
+      ),
     });
     setSelectNameState(
-      selectNameState.filter((t) => t.id !== parseInt(e.target.value))
+      selectNameState.filter(
+        (temperamento) => temperamento.id !== parseInt(e.target.value)
+      )
     );
   }
 
@@ -298,7 +303,7 @@ function Form() {
         {/* ---- INPUT AGE ---- */}
         <div className="div_inputs_dobles">
           <div className="max">
-            <label>Años de vida</label>
+            <label>Años de vida (*)</label>
             <div
               className={errors.life_span_max ? "div_input error" : "div_input"}
             >
@@ -309,6 +314,7 @@ function Form() {
                 name="life_span_max"
                 value={input.life_span_max}
               />
+              <span className="unidad none">Añ</span>
             </div>
             {errors.life_span_max && (
               <span className="dato_incorrecto">{errors.life_span_max}</span>
@@ -327,7 +333,9 @@ function Form() {
                 name="life_span_min"
                 value={input.life_span_min}
               />
+              <span className="unidad none">Añ</span>
             </div>
+
             {errors.life_span_min && (
               <span className="dato_incorrecto">{errors.life_span_min}</span>
             )}
@@ -425,7 +433,9 @@ const FormContainer = styled.div`
     font-size: 14px;
     font-weight: bold;
     color: var(--black-color);
+    width: 100%;
   }
+
   .div_input {
     display: flex;
     align-items: center;
@@ -438,12 +448,13 @@ const FormContainer = styled.div`
   }
 
   .div_input.error {
-    border: 2px solid red;
+    border: 1px solid red;
   }
 
   .div_inputs_dobles {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
   }
 
   .unidad {
@@ -460,12 +471,12 @@ const FormContainer = styled.div`
 
   .form_input.min,
   .form_input.max {
-    max-width: 165px;
+    max-width: 149px;
   }
 
   .form_input.min_years,
   .form_input.max_years {
-    max-width: 165px;
+    max-width: 149px;
   }
 
   .form_input {
@@ -556,8 +567,7 @@ const FormContainer = styled.div`
   }
 
   .dato_incorrecto {
-    margin-left: 15px;
-    color: red;
+    color: #8d1c1c;
     font-size: 12px;
     font-weight: 700;
   }

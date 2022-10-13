@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import PerroCurioso from "../../assets/curiosidades.jpg";
 import Curiosities from "../Curiosities/Curiosities";
-import Loader from "../ReusableComponents/Loader/Loader";
 
 function DogCard({ dog }) {
   // const { name } = dogs;
@@ -376,5 +375,30 @@ const DogCardContainer = styled.div`
     .dog__detail__item {
       border: transparent;
     }
+
+    .canine__curiosities__container {
+      padding: 0;
+    }
+
+    .canine__curiosities__card {
+      width: 90%;
+    }
+    /*
+    .perro__curiosities__container-img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .perro__curiosities__img {
+      width: 100%;
+      display: block;
+    }
+
+    .title__curiosities {
+      font-size: 20px;
+      display: block;
+      color: var(--main-color);
+      padding-bottom: 10px;
+    } */
   }
 `;

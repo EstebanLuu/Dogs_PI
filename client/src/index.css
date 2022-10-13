@@ -48,6 +48,17 @@ a {
   text-decoration: none;
 }
 
+.span__title {
+  color: var(--main-color);
+}
+
+.Cargando-dog {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  color: var(--main-color);
+  font-size: 20px;
+}
 :root {
   /* Colors */
   /* --main-color: rgb(252, 160, 39);
@@ -117,6 +128,11 @@ a {
     /* Margin */
 
     --marginLR: 20px;
+  }
+
+  .Cargando-dog {
+    color: var(--main-color);
+    font-size: 15px;
   }
 }
 

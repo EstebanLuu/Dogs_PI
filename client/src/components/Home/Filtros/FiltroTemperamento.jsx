@@ -19,8 +19,12 @@ function FiltroTemperamento({ currentPage, setCurrentPage }) {
 
   return (
     <div>
-      <select className="select_ordernamiento" onChange={handleFilter}>
-        <option selected disabled>
+      <select
+        defaultValue={"DEFAULT"}
+        className="select_ordernamiento"
+        onChange={handleFilter}
+      >
+        <option value="DEFAULT" disabled>
           selecciona uno
         </option>
         <option className="option__name" value="All">

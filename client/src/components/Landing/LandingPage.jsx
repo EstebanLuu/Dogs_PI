@@ -16,13 +16,13 @@ const LandingPage = () => {
         </div>
         <div className="landing__text">
           <h2 className="landing__text__title">
-            Lorem ipsum dolor sit, amet consectetur adipisicing.
+            Bienvenidos a <span className="span__title">Page Dogs</span>
           </h2>
           <p className="landing__text__p">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit, ipsa
-            nihil temporibus qui soluta est. Tenetur aliquid optio doloremque
-            adipisci, mollitia iusto quis possimus fugit sed neque repellendus
-            necessitatibus! Aspernatur?
+            La aventura comienza aquí en donde puedes buscar a tus perros
+            favoritos, además puedes saber algunos datos sumamente interesantes,
+            como su altura maxima y minima, su peso maximo y minimo, y muchos
+            datos curiosos acerca del mejor amigo del hombre.
           </p>
         </div>
         <Link to="/home">

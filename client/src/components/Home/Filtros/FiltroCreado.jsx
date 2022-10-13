@@ -13,8 +13,12 @@ function FiltroCreado({ currentPage, setCurrentPage }) {
 
   return (
     <div>
-      <select className="select_ordernamiento" onChange={handleSelect}>
-        <option selected disabled>
+      <select
+        defaultValue={'DEFAULT'}
+        className="select_ordernamiento"
+        onChange={handleSelect}
+      >
+        <option value="DEFAULT" disabled>
           selecciona uno
         </option>
         <option className="option__name" value="All">
