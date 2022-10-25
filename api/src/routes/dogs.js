@@ -20,6 +20,7 @@ router.get("/", async (req, res, next) => {
     // Doy formato a los datos de la API y la DB
 
     const allDog = await validandoDogsApi.concat(validandoDogsDb);
+    
 
     res.json(allDog);
   } catch (error) {
